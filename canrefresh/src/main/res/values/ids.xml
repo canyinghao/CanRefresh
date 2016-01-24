@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="can_content_view" type="id" />
+    <item name="can_refresh_header" type="id" />
+    <item name="can_refresh_footer" type="id" />
+</resources>

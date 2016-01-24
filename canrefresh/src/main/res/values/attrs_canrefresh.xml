@@ -1,0 +1,29 @@
+<resources>
+    <declare-styleable name="CanRefreshLayout">
+        <attr name="can_enabled_up" format="boolean" />
+        <attr name="can_enabled_down" format="boolean" />
+
+        <attr name="can_style_up" format="enum">
+            <enum name="classic" value="0" />
+            <enum name="upper" value="1" />
+            <enum name="lower" value="2" />
+            <enum name="mid" value="3" />
+        </attr>
+
+        <attr name="can_style_down" format="enum">
+            <enum name="classic" value="0" />
+            <enum name="upper" value="1" />
+            <enum name="lower" value="2" />
+            <enum name="mid" value="3" />
+        </attr>
+        <attr name="can_friction" format="float" />
+        <attr name="can_duration" format="integer" />
+
+        <attr name="can_smooth_length" format="integer" />
+        <attr name="can_smooth_duration" format="integer" />
+
+
+    </declare-styleable>
+
+
+</resources>

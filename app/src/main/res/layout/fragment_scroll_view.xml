@@ -1,0 +1,53 @@
+<com.canyinghao.canrefresh.CanRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/refresh"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:can_friction="1.0"
+    app:can_style_down="lower"
+    app:can_style_up="mid">
+
+
+    <ScrollView
+        android:id="@id/can_content_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="如今，在笔者看来，诺基亚还有一点值得HTC学习是：把亏损的手机业务卖掉，专注VR等新业务。首先，报IDC数据显示，在经过了多年逾10%的高速增长后，2015年全球智能手机出货量预计将在世界范围内首次出现全年个位数增长。研究表明，2016年全球智能手机出货量将增长9.8%，至14.3亿部，未来几年的增速料将进一步放缓。行业同质化竞争日益激烈、360、乐视等新兴手机品牌逆势而上的背景下，智能手机将迎来行业洗牌期。而这对于已经跌出全球智能手机销量前十的HTC，如果无法扭转长期亏损的手机业务，并赋予手机创新设计的话，自然很难逃出这一劫。其次，对于任何一家公司来说，一个长期亏损的业务部门带来的消极影响，不单单是资金和资源上的低效率投入，因为对于亏损部门的资金扶持，无疑会压制其他盈利和潜力部门的创造力。特别是对于手机这种很难再爆发出新的增长点的业务，持续的投入很可能拖累HTC在VR等新业务上的脚步。在这一点上，在2013年卖掉亏损的手机业务之后，诺基亚的核心业务也随着转移，整个企业也可以将主要资源用在盈利的电信设备和具有发展潜力的地图服务上。在此之后，仅从盈利的角度来说，诺基亚可谓活的有滋有味。特别是去年的时候，为了重振在移动市场的地位，诺基亚收购了竞争对手阿朗，并让自己的市值上升到269.7亿美元，虽然这与08年的千亿美元市值想去甚远，但是相对于13年的不足百亿美元的资产，还是打了一手漂亮的翻身仗。反观勇敢接盘微软，由于买下连年亏损的诺基亚的手机业务，不仅连年给予手机业务部门巨额补贴和输血，最后在智能手机市场份额上还是只有3%左右，甚至连累了自己的股价都下跌，可谓“赔了夫人又折兵”。同样的事情还发生在谷歌和联想身上，在谷歌深知亏损的摩托罗拉手机业务会拖累自己其他业务的发展后，所以，即便当初125亿美元的价钱收购的摩托罗拉移动，之后只要29亿美元就卖给了联想。至于背上这个包袱的联想手机，如今过得怎么样想必大家都很清楚了。那么，即便卖掉手机业务可以帮助HTC止住亏损，那么VR这个新业务值得HTC孤注一掷吗？根据调研机构ABIResearch的预测显示，未来五年VR设备将会迅速增长，年复合增长率可达106%。就国际上来说，，谷歌于今年1月13日刚刚成立了一个虚拟现实部门，希望应对Facebook及其子公司Oculus不断发起的激烈竞争。至于HTC在VR上的优势，主要体现在VR设备的两个主要因素，显示和延迟上，HTC Vive都具备着一定的优势——这些因素也决定了Vive目前是外媒评价最好的VR设备。同时，除了硬件上的优势，HTC的合作伙伴Valve，旗下有《半条命》、《Dota 2》等知名游戏作品和全球最大的综合性数字发行平台Steam，拥有1.25亿注册用户。换而言之，除了硬件和内容上的优势，HTC的VR也拥有可以有效转化的用户基数。对此，宏达电董事长王雪红透露，虚拟现实及个人智能医疗也是未来新业务的重要发展方向。而中国手机联盟秘书长王艳辉也认为，HTC在手机上已经没有，不过在虚拟现实上还有优势。”HTC应该转型，把手机业务卖掉，去赌虚拟现实。”最后，三年前的诺基亚在众人不解、粉丝落泪的背景下毅然决然的卖掉亏损的手机业务，并在电信设备和地图服务上再创辉煌，并且之后的出售给由德国汽车厂商宝马、奥迪和梅赛德斯组成的联盟的here地图，更是让诺基亚获得27.8亿美元的巨大收益。而这一切，无不源自于那个断臂求生似的决定。三年后，对于如今日薄西山的HTC，虽然VR短期内难当大用，不过潜力依旧被外界看好。所以，面对难堪大任的手机业务，HTC是否愿意给自己一刀呢？
+"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <com.canyinghao.canrefresh.classic.ClassicRefreshView
+        android:id="@id/can_refresh_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <com.canyinghao.canrefresh.classic.ClassicRefreshView
+        android:id="@id/can_refresh_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</com.canyinghao.canrefresh.CanRefreshLayout>

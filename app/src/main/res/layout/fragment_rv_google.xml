@@ -1,0 +1,27 @@
+<com.canyinghao.canrefresh.CanRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/refresh"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <com.canyinghao.canrefresh.google.GoogleCircleHookRefreshView
+        android:id="@id/can_refresh_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.canyinghao.canrefresh.google.GoogleCircleHookRefreshView
+        android:id="@id/can_refresh_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@id/can_content_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:clipToPadding="false" />
+
+
+
+</com.canyinghao.canrefresh.CanRefreshLayout>

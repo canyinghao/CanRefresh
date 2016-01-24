@@ -1,0 +1,58 @@
+<resources>
+    <string name="app_name">CanRefresh</string>
+
+    <array name="array_list1">
+
+        <item>TextView</item>
+        <item>LinearLayout</item>
+
+
+
+    </array>
+
+    <array name="array_list2">
+
+        <item>ListView</item>
+        <item>ScrollView</item>
+
+
+
+    </array>
+
+
+    <array name="array_list3">
+
+        <item>classic</item>
+        <item>google</item>
+        <item>yalantis</item>
+        <item>storehouse</item>
+
+
+    </array>
+
+
+    <string name="app_about">
+<![CDATA[
+	<div>
+	<br/>项目地址：<a href="https://github.com/canyinghao/CanRecyclerView">CanRecyclerView</a><br />
+	<br/>项目作者：<a href="https://github.com/canyinghao">canyinghao</a><br />
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>项目介绍：此项目参考了部分同类项目，花了几天时间调出来，还是挺累的。
+	<br/>
+	<br/>可适配任何view，可下拉刷新上拉加载，可自定义上拉上拉效果，其中预置了5中效果。经典、旋转、google、StoreHouse、Yalantis。也可自由搭配。
+	<br/>
+	<br/>若不想要预置的效果，只需要将CanRefresh类和CanRefreshLayout类拷入自己项目中，继承CanRefresh类自己写效果即可。
+	<br/>
+
+	</div>
+	]]>
+    </string>
+
+
+
+</resources>

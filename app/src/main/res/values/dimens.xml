@@ -1,0 +1,30 @@
+<resources>
+
+
+
+    <dimen name="dimen_super">50dp</dimen>
+    <dimen name="dimen_big_super">30dp</dimen>
+    <dimen name="dimen_big">20dp</dimen>
+    <dimen name="dimen_normal_big">15dp</dimen>
+    <dimen name="dimen_normal">10dp</dimen>
+
+    <dimen name="dimen_small">5dp</dimen>
+    <dimen name="dimen_line">0.5dp</dimen>
+    <dimen name="dimen_radius">5dp</dimen>
+    <dimen name="dimen_radius_1">2.5dp</dimen>
+
+
+
+    <dimen name="text_big_super">20sp</dimen>
+    <dimen name="text_big">18sp</dimen>
+    <dimen name="text_normal_big">16sp</dimen>
+    <dimen name="text_normal">15sp</dimen>
+    <dimen name="text_small">14sp</dimen>
+    <dimen name="text_small_little">13sp</dimen>
+    <dimen name="text_little">12sp</dimen>
+    <dimen name="text_little_super">10sp</dimen>
+
+    <dimen name="btn_hight_1">45dp</dimen>
+
+
+</resources>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="transparent_7">#77000000</color>
+    <color name="window_background">#FFF5F5F5</color>
+
+
+
+    <color name="white">#ffffffff</color>
+    <color name="white_text_70">#b2ffffff</color>
+    <color name="white_text_40">#66ffffff</color>
+    <color name="white_text_30">#4dffffff</color>
+    <color name="white_text_20">#33ffffff</color>
+    <color name="white_text_12">#1fffffff</color>
+    <color name="black">#ff000000</color>
+    <color name="black_text_87">#dd000000</color>
+    <color name="black_text_54">#8a000000</color>
+    <color name="black_text_26">#42000000</color>
+    <color name="black_text_12">#1f000000</color>
+
+
+    <color name="black1">#ff333333</color>
+    <color name="black2">#ff666666</color>
+    <color name="black3">#ff999999</color>
+    <color name="black4">#ffcccccc</color>
+
+    <color name="show_bg">#f8f8f8</color>
+    <color name="line">#e6e6e6</color>
+    <color name="line_stroke">#ebebeb</color>
+
+    <color name="color_main">#0b416f</color>
+    <color name="color_text">#8dafc9</color>
+    <color name="color_button">#007ae1</color>
+    <color name="color_red">#ed6d64</color>
+
+
+    <color name="report_color1">#fbb03b</color>
+    <color name="report_color2">#5d727b</color>
+
+    <color name="report_color3">#ed6d64</color>
+    <color name="report_color4">#007ae1</color>
+
+    <color name="tag_bg_color">#6479f0</color>
+
+
+
+</resources>

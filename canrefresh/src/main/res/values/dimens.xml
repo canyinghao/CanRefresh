@@ -1,0 +1,11 @@
+<resources>
+
+    <!-- google -->
+    <dimen name="refresh_height_google">100dp</dimen>
+    <!-- yalantis -->
+    <dimen name="refresh_height_yalantis">136dp</dimen>
+
+
+    <dimen name="refresh_height_rotate">50dp</dimen>
+
+</resources>
