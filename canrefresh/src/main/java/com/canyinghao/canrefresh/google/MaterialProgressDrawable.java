@@ -46,7 +46,7 @@ import java.util.ArrayList;
 /**
  * Fancy progress indicator for Material theme.
  *
- * @hide
+ *
  */
 public class MaterialProgressDrawable extends Drawable implements Animatable {
     // Maps to ProgressBar.Large style

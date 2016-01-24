@@ -36,6 +36,6 @@
             android:singleLine="true"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:textColor="?attr/colorPrimary" />
+            android:textColor="#666666" />
     </RelativeLayout>
 </FrameLayout>
