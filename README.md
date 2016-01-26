@@ -11,7 +11,7 @@ compile 'com.canyinghao:canrefresh:1.0.0'
 
 ## 使用方式 
 **1. 使用方法**  
-CanRefresh是一个刷新控件，可适配任何view，可下拉刷新上拉加载。OnRefreshListener是下拉监听，OnLoadMoreListener是上拉监听。refresh.setStyle(type, type)中第一次参数是下拉的风格，第二个参数是上拉的风格。风格有四种，经典风格、在视图前面、在视图后面、居于拉动间隔的中间。预置我五种刷新效果，经典效果、旋转效果、google效果、StoreHouse效果、Yalantis效果。可自由组合。若不想要预置的效果，只需要将CanRefresh类和CanRefreshLayout类拷入自己项目中，继承CanRefresh类自己写效果即可。
+CanRefresh是一个刷新控件，可适配任何view，可下拉刷新上拉加载。OnRefreshListener是下拉监听，OnLoadMoreListener是上拉监听。refresh.setStyle(type, type)中第一个参数是下拉的风格，第二个参数是上拉的风格。风格有四种，经典风格、在视图前面、在视图后面、居于拉动间隔的中间。预置我五种刷新效果，经典效果、旋转效果、google效果、StoreHouse效果、Yalantis效果。可自由组合。若不想要预置的效果，只需要将CanRefresh类和CanRefreshLayout类拷入自己项目中，继承CanRefresh类自己写效果即可。
 ```JAVA
 package com.canyinghao.canrefreshdemo.ui;
 
