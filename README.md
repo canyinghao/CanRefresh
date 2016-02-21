@@ -202,6 +202,11 @@ public class RVRefreshFragment extends Fragment implements CanRefreshLayout.OnRe
 
 canyinghao: <canyinghao@hotmail.com>  
 
+[新浪微博](http://weibo.com/u/5670978460)
+
+[google+](https://plus.google.com/u/0/109542533436298291853)
+
+[twitter](https://twitter.com/canyinghao)
 
 ### License
 
