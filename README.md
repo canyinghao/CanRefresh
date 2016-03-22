@@ -207,7 +207,6 @@ canyinghao: <canyinghao@hotmail.com>
 
 [google+](https://plus.google.com/u/0/109542533436298291853)
 
-[twitter](https://twitter.com/canyinghao)
 
 ### License
 
