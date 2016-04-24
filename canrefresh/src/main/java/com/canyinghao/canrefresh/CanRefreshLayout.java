@@ -69,6 +69,9 @@ public class CanRefreshLayout extends ViewGroup {
 
     private boolean isSetHeaderHeight;
     private boolean isSetFooterHeight;
+//    是否在刷新中
+    private boolean isHeaderRefreshing;
+    private boolean isFooterRefreshing;
 
 
     //    摩擦系数
@@ -462,7 +465,7 @@ public class CanRefreshLayout extends ViewGroup {
     private boolean canRefresh() {
 
 
-        return mRefreshEnabled && mHeaderView != null && !canChildScrollUp();
+        return !isHeaderRefreshing&&mRefreshEnabled && mHeaderView != null && !canChildScrollUp();
     }
 
     /**
@@ -473,7 +476,7 @@ public class CanRefreshLayout extends ViewGroup {
     private boolean canLoadMore() {
 
 
-        return mLoadMoreEnabled && mFooterView != null && !canChildScrollDown();
+        return !isFooterRefreshing&&mLoadMoreEnabled && mFooterView != null && !canChildScrollDown();
     }
 
 
@@ -1006,6 +1009,7 @@ public class CanRefreshLayout extends ViewGroup {
             @Override
             public void run() {
                 smoothMove(true, false, 0, 0);
+                isHeaderRefreshing =false;
                 getHeaderInterface().onComplete();
                 getHeaderInterface().onReset();
             }
@@ -1023,6 +1027,7 @@ public class CanRefreshLayout extends ViewGroup {
             @Override
             public void run() {
                 smoothMove(false, false, mContentView.getMeasuredHeight() - getMeasuredHeight(), 0);
+                isFooterRefreshing= false;
                 getFooterInterface().onComplete();
                 getFooterInterface().onReset();
             }
@@ -1053,14 +1058,18 @@ public class CanRefreshLayout extends ViewGroup {
 
 
     private void refreshing() {
+        isHeaderRefreshing = true;
         if (mOnRefreshListener != null) {
+
             mOnRefreshListener.onRefresh();
         }
 
     }
 
     private void loadingMore() {
+        isFooterRefreshing =true;
         if (mOnLoadMoreListener != null) {
+
             mOnLoadMoreListener.onLoadMore();
         }
 
