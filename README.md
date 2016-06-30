@@ -6,7 +6,7 @@
 
 ##添加依赖
 ```JAVA
-compile 'com.canyinghao:canrefresh:1.0.1'
+compile 'com.canyinghao:canrefresh:1.0.3'
 ```
 
 ## 使用方式 
