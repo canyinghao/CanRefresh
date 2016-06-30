@@ -194,7 +194,15 @@ public class RVRefreshFragment extends Fragment implements CanRefreshLayout.OnRe
 **2. 注意事项**  
 虽说能适配任何view，但用法还是有一些规则的。不能使用RelativeLayout里面包一个RecyclerView，然后给RelativeLayout添加下拉刷新，这样的用法会出问题。  
 **3. 更新日志**  
-1.解决下拉刷新中依然可下拉的bug。
+
+2016.6.30  
+1.添加对CoordinatorLayout的支持。  
+2.自定义下拉上拉的背景颜色。  
+
+
+2016.4.7  
+1.解决下拉刷新中依然可下拉的bug。  
+
 
 
 
