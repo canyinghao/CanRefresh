@@ -114,6 +114,9 @@ public class RVRefreshFragment extends Fragment implements CanRefreshLayout.OnRe
         refresh.setStyle(type, type);
 
 
+
+
+
         recyclerView.setLayoutManager(mLayoutManager);
 
         adapter = new CanRVAdapter<MainBean>(recyclerView, R.layout.item_main) {

@@ -5,6 +5,9 @@ import android.content.res.TypedArray;
 import android.support.annotation.FloatRange;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.view.NestedScrollingChild;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -18,9 +21,7 @@ import android.widget.Scroller;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -62,6 +63,12 @@ public class CanRefreshLayout extends ViewGroup {
     protected View mFooterView;
     //    内容
     protected View mContentView;
+
+    //    列表  mIsCoo=true时有效
+    protected View mScrollView;
+
+    protected AppBarLayout mAppBar;
+
     //    头部高度
     protected int mHeaderHeight;
     //    底部高度
@@ -69,7 +76,7 @@ public class CanRefreshLayout extends ViewGroup {
 
     private boolean isSetHeaderHeight;
     private boolean isSetFooterHeight;
-//    是否在刷新中
+    //    是否在刷新中
     private boolean isHeaderRefreshing;
     private boolean isFooterRefreshing;
 
@@ -119,7 +126,14 @@ public class CanRefreshLayout extends ViewGroup {
     private int scrollSum;
     //  一个缓存值
     private int tempY;
-
+    //   下拉时背景
+    private int mRefreshBackgroundResource;
+    //    上拉时背景
+    private int mLoadMoreBackgroundResource;
+    //  内容视图是否是CoordinatorLayout
+    private boolean mIsCoo;
+    //  是否展开  mIsCoo=true时有效
+    private boolean isDependentOpen = true;
 
     private Scroller mScroller = new Scroller(getContext());
 
@@ -168,6 +182,18 @@ public class CanRefreshLayout extends ViewGroup {
 
                     mSmoothLength = a.getInt(attr, DEFAULT_SMOOTH_LENGTH);
 
+                } else if (attr == R.styleable.CanRefreshLayout_can_bg_up) {
+
+                    mRefreshBackgroundResource = a.getResourceId(attr, android.R.color.transparent);
+
+                } else if (attr == R.styleable.CanRefreshLayout_can_bg_down) {
+
+                    mLoadMoreBackgroundResource = a.getResourceId(attr, android.R.color.transparent);
+
+                } else if (attr == R.styleable.CanRefreshLayout_can_is_coo) {
+
+                    mIsCoo = a.getBoolean(attr, false);
+
                 }
             }
 
@@ -180,16 +206,57 @@ public class CanRefreshLayout extends ViewGroup {
     }
 
 
+    private void setAppBarListener() {
+        if (mAppBar != null) {
+
+            mAppBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+                @Override
+                public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+
+                    int miniH = mAppBar.getMeasuredHeight() / 2;
+
+                    if (verticalOffset == 0) {
+                        isDependentOpen = true;
+                    } else if (Math.abs(verticalOffset) >= miniH) {
+                        isDependentOpen = false;
+                    }
+                }
+            });
+        }
+    }
+
+
+    /**
+     * 设置下拉刷新时背景
+     *
+     * @param mRefreshBackgroundResource
+     */
+    public void setRefreshBackgroundResource(int mRefreshBackgroundResource) {
+        this.mRefreshBackgroundResource = mRefreshBackgroundResource;
+    }
+
+    /**
+     * 设置加载更多时背景
+     *
+     * @param mLoadMoreBackgroundResource
+     */
+    public void setLoadMoreBackgroundResource(int mLoadMoreBackgroundResource) {
+        this.mLoadMoreBackgroundResource = mLoadMoreBackgroundResource;
+    }
+
     /**
      * 自己设置高度时不使用自动获取高度
+     *
      * @param mHeaderHeight
      */
     public void setHeaderHeight(int mHeaderHeight) {
         this.mHeaderHeight = mHeaderHeight;
         isSetHeaderHeight = true;
     }
+
     /**
      * 自己设置高度时不使用自动获取高度
+     *
      * @param mFooterHeight
      */
     public void setFooterHeight(int mFooterHeight) {
@@ -335,20 +402,43 @@ public class CanRefreshLayout extends ViewGroup {
             mHeaderView = findViewById(R.id.can_refresh_header);
             mContentView = findViewById(R.id.can_content_view);
             mFooterView = findViewById(R.id.can_refresh_footer);
-
+            mScrollView = findViewById(R.id.can_scroll_view);
         }
 
         if (mContentView == null) {
-            throw new IllegalStateException("error");
+            throw new IllegalStateException("mContentView is null");
+        }
+
+        if (mIsCoo) {
+            if (mContentView instanceof CoordinatorLayout) {
+
+                CoordinatorLayout coo = (CoordinatorLayout) mContentView;
+
+                mAppBar = (AppBarLayout) coo.getChildAt(0);
+
+
+                setAppBarListener();
+
+            } else {
+                throw new IllegalStateException("mContentView is not CoordinatorLayout");
+            }
+
+            if (mScrollView == null) {
+                throw new IllegalStateException("mScrollView is null");
+            }
+
+            if (!(mScrollView instanceof NestedScrollingChild)) {
+                throw new IllegalStateException("mScrollView is not NestedScrollingChild");
+            }
         }
 
         if (mHeaderView != null && !(mHeaderView instanceof CanRefresh)) {
 
-            throw new IllegalStateException("error");
+            throw new IllegalStateException("mHeaderView  error");
         }
         if (mFooterView != null && !(mFooterView instanceof CanRefresh)) {
 
-            throw new IllegalStateException("error");
+            throw new IllegalStateException("mFooterView error");
         }
 
         if (mHeaderView != null) {
@@ -465,7 +555,7 @@ public class CanRefreshLayout extends ViewGroup {
     private boolean canRefresh() {
 
 
-        return !isHeaderRefreshing&&mRefreshEnabled && mHeaderView != null && !canChildScrollUp();
+        return !isHeaderRefreshing && mRefreshEnabled && mHeaderView != null && !canChildScrollUp();
     }
 
     /**
@@ -476,7 +566,7 @@ public class CanRefreshLayout extends ViewGroup {
     private boolean canLoadMore() {
 
 
-        return !isFooterRefreshing&&mLoadMoreEnabled && mFooterView != null && !canChildScrollDown();
+        return !isFooterRefreshing && mLoadMoreEnabled && mFooterView != null && !canChildScrollDown();
     }
 
 
@@ -684,7 +774,7 @@ public class CanRefreshLayout extends ViewGroup {
 
 
                     if (isHead) {
-
+                        setBackgroundResource(mRefreshBackgroundResource);
                         smoothMove(true, true, scrollNum, scrollSum);
 
 
@@ -695,7 +785,7 @@ public class CanRefreshLayout extends ViewGroup {
 
                         getHeaderInterface().onPositionChange(Math.abs(scrollSum) / (float) mHeaderHeight);
                     } else {
-
+                        setBackgroundResource(mLoadMoreBackgroundResource);
                         smoothMove(false, true, scrollNum, scrollSum);
 
 
@@ -731,6 +821,8 @@ public class CanRefreshLayout extends ViewGroup {
                         } else {
 
                             smoothMove(true, false, 0, 0);
+
+
                         }
 
                     } else {
@@ -1005,13 +1097,18 @@ public class CanRefreshLayout extends ViewGroup {
      */
     public void refreshComplete() {
 
+        if (!isHeaderRefreshing) {
+            return;
+        }
+
         postDelayed(new Runnable() {
             @Override
             public void run() {
                 smoothMove(true, false, 0, 0);
-                isHeaderRefreshing =false;
+                isHeaderRefreshing = false;
                 getHeaderInterface().onComplete();
                 getHeaderInterface().onReset();
+
             }
         }, mDuration);
 
@@ -1022,14 +1119,17 @@ public class CanRefreshLayout extends ViewGroup {
      * 加载更多完成
      */
     public void loadMoreComplete() {
-
+        if (!isFooterRefreshing) {
+            return;
+        }
         postDelayed(new Runnable() {
             @Override
             public void run() {
                 smoothMove(false, false, mContentView.getMeasuredHeight() - getMeasuredHeight(), 0);
-                isFooterRefreshing= false;
+                isFooterRefreshing = false;
                 getFooterInterface().onComplete();
                 getFooterInterface().onReset();
+
             }
         }, mDuration);
 
@@ -1044,6 +1144,7 @@ public class CanRefreshLayout extends ViewGroup {
             postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    setBackgroundResource(mRefreshBackgroundResource);
                     smoothMove(true, false, -mHeaderHeight, -mHeaderHeight);
                     getHeaderInterface().onRelease();
                     refreshing();
@@ -1067,7 +1168,7 @@ public class CanRefreshLayout extends ViewGroup {
     }
 
     private void loadingMore() {
-        isFooterRefreshing =true;
+        isFooterRefreshing = true;
         if (mOnLoadMoreListener != null) {
 
             mOnLoadMoreListener.onLoadMore();
@@ -1144,17 +1245,32 @@ public class CanRefreshLayout extends ViewGroup {
      * @return
      */
     protected boolean canChildScrollUp() {
+
+
+        if (mIsCoo) {
+
+            if (isDependentOpen) {
+                return false;
+            } else {
+                return true;
+            }
+
+        }
+        return canScrollUp(mContentView);
+    }
+
+    private boolean canScrollUp(View view) {
         if (android.os.Build.VERSION.SDK_INT < 14) {
-            if (mContentView instanceof AbsListView) {
-                final AbsListView absListView = (AbsListView) mContentView;
+            if (view instanceof AbsListView) {
+                final AbsListView absListView = (AbsListView) view;
                 return absListView.getChildCount() > 0
                         && (absListView.getFirstVisiblePosition() > 0 || absListView.getChildAt(0)
                         .getTop() < absListView.getPaddingTop());
             } else {
-                return ViewCompat.canScrollVertically(mContentView, -1) || mContentView.getScrollY() > 0;
+                return ViewCompat.canScrollVertically(view, -1) || view.getScrollY() > 0;
             }
         } else {
-            return ViewCompat.canScrollVertically(mContentView, -1);
+            return ViewCompat.canScrollVertically(view, -1);
         }
     }
 
@@ -1165,17 +1281,36 @@ public class CanRefreshLayout extends ViewGroup {
      * @return
      */
     protected boolean canChildScrollDown() {
+
+
+        if (mIsCoo) {
+
+            if (isDependentOpen) {
+                return true;
+            }
+
+            return canScrollDown(mScrollView);
+
+
+        }
+
+        return canScrollDown(mContentView);
+
+
+    }
+
+    private boolean canScrollDown(View view) {
         if (android.os.Build.VERSION.SDK_INT < 14) {
-            if (mContentView instanceof AbsListView) {
-                final AbsListView absListView = (AbsListView) mContentView;
+            if (view instanceof AbsListView) {
+                final AbsListView absListView = (AbsListView) view;
                 return absListView.getChildCount() > 0
                         && (absListView.getLastVisiblePosition() < absListView.getChildCount() - 1
                         || absListView.getChildAt(absListView.getChildCount() - 1).getBottom() > absListView.getPaddingBottom());
             } else {
-                return ViewCompat.canScrollVertically(mContentView, 1) || mContentView.getScrollY() < 0;
+                return ViewCompat.canScrollVertically(view, 1) || view.getScrollY() < 0;
             }
         } else {
-            return ViewCompat.canScrollVertically(mContentView, 1);
+            return ViewCompat.canScrollVertically(view, 1);
         }
     }
 
@@ -1186,4 +1321,6 @@ public class CanRefreshLayout extends ViewGroup {
     public interface OnRefreshListener {
         void onRefresh();
     }
+
+
 }

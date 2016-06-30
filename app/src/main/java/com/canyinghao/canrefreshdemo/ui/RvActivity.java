@@ -1,6 +1,7 @@
 package com.canyinghao.canrefreshdemo.ui;
 
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -32,6 +33,9 @@ public class RvActivity extends AppCompatActivity {
     @Bind(R.id.viewPager)
     ViewPager viewPager;
 
+    @Bind(R.id.appbar)
+    AppBarLayout appbar;
+
     Adapter adapter;
     @Bind(R.id.cd)
     View cd;
@@ -62,6 +66,9 @@ public class RvActivity extends AppCompatActivity {
 
             }
         }, 2000);
+
+
+
     }
 
 

@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case  3:
-                        startActivity(new Intent(MainActivity.this,CustomActivity.class));
+                        startActivity(new Intent(MainActivity.this,CooActivity.class));
                         break;
                 }
 

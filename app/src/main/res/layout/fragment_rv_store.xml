@@ -1,7 +1,11 @@
 <com.canyinghao.canrefresh.CanRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/refresh"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+
+
+    >
 
     <com.canyinghao.canrefresh.storehouse.StoreHouseRefreshView
         android:id="@id/can_refresh_header"

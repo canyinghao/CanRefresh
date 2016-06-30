@@ -3,4 +3,5 @@
     <item name="can_content_view" type="id" />
     <item name="can_refresh_header" type="id" />
     <item name="can_refresh_footer" type="id" />
+    <item name="can_scroll_view" type="id" />
 </resources>

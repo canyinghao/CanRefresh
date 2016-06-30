@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:minWidth="44dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/indication"
+            android:layout_width="23dp"
+            android:layout_height="3dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="82dp"
+            android:src="@drawable/shape_shadow" />
+
+
+        <com.canyinghao.canrefresh.shapeloading.ShapeLoadingView
+            android:id="@+id/shapeLoadingView"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2dp" />
+
+    </RelativeLayout>
+</FrameLayout>

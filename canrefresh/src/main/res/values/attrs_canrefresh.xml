@@ -21,6 +21,10 @@
 
         <attr name="can_smooth_length" format="integer" />
         <attr name="can_smooth_duration" format="integer" />
+        <attr name="can_bg_up" format="reference" />
+        <attr name="can_bg_down" format="reference" />
+        <attr name="can_is_coo" format="boolean" />
+
 
 
     </declare-styleable>

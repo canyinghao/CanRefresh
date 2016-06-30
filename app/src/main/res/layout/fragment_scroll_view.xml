@@ -7,13 +7,18 @@
     android:layout_height="match_parent"
     app:can_friction="1.0"
     app:can_style_down="lower"
-    app:can_style_up="mid">
+    app:can_style_up="mid"
+    app:can_bg_up="@color/google_red"
+    app:can_bg_down="@color/google_green"
+
+    >
 
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:id="@id/can_content_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:background="#ffffff">
 
         <LinearLayout
@@ -36,7 +41,7 @@
         </LinearLayout>
 
 
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
     <com.canyinghao.canrefresh.classic.ClassicRefreshView
         android:id="@id/can_refresh_header"

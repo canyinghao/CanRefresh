@@ -50,15 +50,15 @@ public class MainBean {
         bean3.title = "RecyclerView";
         bean3.content = "RecyclerView的各种刷新方式";
 
-//        MainBean  bean4 =   new MainBean();
-//        bean4.title = "自定义";
-//        bean4.content = "自定义刷新方式";
+        MainBean  bean4 =   new MainBean();
+        bean4.title = "CoordinatorLayout";
+        bean4.content = "支持CoordinatorLayout";
 
 
         list.add(bean1);
         list.add(bean2);
         list.add(bean3);
-//        list.add(bean4);
+        list.add(bean4);
 
 
         return  list;

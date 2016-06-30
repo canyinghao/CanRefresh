@@ -1,7 +1,12 @@
 <com.canyinghao.canrefresh.CanRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/refresh"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    app:can_bg_up="@color/google_red"
+    app:can_bg_down="@color/google_green"
+
+    >
 
     <com.canyinghao.canrefresh.classic.ClassicRefreshView
         android:id="@id/can_refresh_header"
