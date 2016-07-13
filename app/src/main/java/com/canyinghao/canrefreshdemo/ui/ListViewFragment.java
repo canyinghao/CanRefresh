@@ -47,6 +47,8 @@ public class ListViewFragment extends Fragment implements CanRefreshLayout.OnRef
         refresh.setOnRefreshListener(this);
         refresh.setOnLoadMoreListener(this);
 
+        refresh.autoRefresh();
+
 
       adapter = new CanAdapter<MainBean>(getContext(), R.layout.item_main) {
 
