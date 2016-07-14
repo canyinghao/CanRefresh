@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<com.canyinghao.canrefresh.CanRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/refresh"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.canyinghao.canrefresh.classic.ClassicRefreshView
+        android:id="@id/can_refresh_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@id/can_content_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+    <com.canyinghao.canrecyclerview.CanRecyclerViewHeaderFooter
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black2"
+        android:padding="@dimen/dimen_normal_big"
+
+
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:id="@+id/iv_head"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:src="@mipmap/ic_launcher" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CanRecycler"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </com.canyinghao.canrecyclerview.CanRecyclerViewHeaderFooter>
+
+
+    <com.canyinghao.canrecyclerview.CanRecyclerViewHeaderFooter
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_normal_big"
+
+
+        >
+
+
+        <ProgressBar
+            android:id="@+id/pb"
+            style="@style/Base.Widget.AppCompat.ProgressBar"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center" />
+
+
+        <TextView
+            android:id="@+id/tv_loadmore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="没有更多..."
+            android:visibility="gone" />
+
+
+    </com.canyinghao.canrecyclerview.CanRecyclerViewHeaderFooter>
+
+
+</com.canyinghao.canrefresh.CanRefreshLayout>
+

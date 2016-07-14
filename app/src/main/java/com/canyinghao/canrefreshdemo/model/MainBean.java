@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by yangjian on 16/1/21.
+ * Created by canyinghao on 16/1/21.
  */
 public class MainBean {
 

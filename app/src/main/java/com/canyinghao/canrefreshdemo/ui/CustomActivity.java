@@ -25,7 +25,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * Created by yangjian on 16/1/24.
+ * Created by canyinghao on 16/1/24.
  */
 public class CustomActivity extends AppCompatActivity implements CanRefreshLayout.OnRefreshListener, CanRefreshLayout.OnLoadMoreListener{
 

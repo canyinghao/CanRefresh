@@ -16,7 +16,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Created by yangjian on 16/1/24.
+ * Created by canyinghao on 16/1/24.
  */
 public class TextViewFragment extends Fragment implements CanRefreshLayout.OnRefreshListener, CanRefreshLayout.OnLoadMoreListener {
     @Bind(R.id.can_content_view)

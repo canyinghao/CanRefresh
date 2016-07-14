@@ -12,9 +12,12 @@ import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.FrameLayout;
 import android.widget.Scroller;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Copyright 2016 canyinghao
@@ -28,7 +31,7 @@ import android.widget.Scroller;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-public class CanRefreshLayout extends ViewGroup {
+public class CanRefreshLayout extends FrameLayout {
 
     public static String TAG = CanRefreshLayout.class.getSimpleName();
 
@@ -148,49 +151,49 @@ public class CanRefreshLayout extends ViewGroup {
 
     public CanRefreshLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CanRefreshLayout, defStyleAttr, 0);
+        final TypedArray a = context.obtainStyledAttributes(attrs, com.canyinghao.canrefresh.R.styleable.CanRefreshLayout, defStyleAttr, 0);
 
         try {
             final int N = a.getIndexCount();
             for (int i = 0; i < N; i++) {
                 int attr = a.getIndex(i);
-                if (attr == R.styleable.CanRefreshLayout_can_enabled_up) {
+                if (attr == com.canyinghao.canrefresh.R.styleable.CanRefreshLayout_can_enabled_up) {
                     setRefreshEnabled(a.getBoolean(attr, true));
 
-                } else if (attr == R.styleable.CanRefreshLayout_can_enabled_down) {
+                } else if (attr == com.canyinghao.canrefresh.R.styleable.CanRefreshLayout_can_enabled_down) {
                     setLoadMoreEnabled(a.getBoolean(attr, true));
 
-                } else if (attr == R.styleable.CanRefreshLayout_can_style_up) {
+                } else if (attr == com.canyinghao.canrefresh.R.styleable.CanRefreshLayout_can_style_up) {
                     mHeadStyle = a.getInt(attr, CLASSIC);
 
-                } else if (attr == R.styleable.CanRefreshLayout_can_style_down) {
+                } else if (attr == com.canyinghao.canrefresh.R.styleable.CanRefreshLayout_can_style_down) {
                     mFootStyle = a.getInt(attr, CLASSIC);
 
-                } else if (attr == R.styleable.CanRefreshLayout_can_friction) {
+                } else if (attr == com.canyinghao.canrefresh.R.styleable.CanRefreshLayout_can_friction) {
 
                     setFriction(a.getFloat(attr, DEFAULT_FRICTION));
 
-                } else if (attr == R.styleable.CanRefreshLayout_can_duration) {
+                } else if (attr == com.canyinghao.canrefresh.R.styleable.CanRefreshLayout_can_duration) {
 
                     mDuration = a.getInt(attr, DEFAULT_DURATION);
 
-                } else if (attr == R.styleable.CanRefreshLayout_can_smooth_duration) {
+                } else if (attr == com.canyinghao.canrefresh.R.styleable.CanRefreshLayout_can_smooth_duration) {
 
                     mSmoothDuration = a.getInt(attr, DEFAULT_SMOOTH_DURATION);
 
-                } else if (attr == R.styleable.CanRefreshLayout_can_smooth_length) {
+                } else if (attr == com.canyinghao.canrefresh.R.styleable.CanRefreshLayout_can_smooth_length) {
 
                     mSmoothLength = a.getInt(attr, DEFAULT_SMOOTH_LENGTH);
 
-                } else if (attr == R.styleable.CanRefreshLayout_can_bg_up) {
+                } else if (attr == com.canyinghao.canrefresh.R.styleable.CanRefreshLayout_can_bg_up) {
 
                     mRefreshBackgroundResource = a.getResourceId(attr, android.R.color.transparent);
 
-                } else if (attr == R.styleable.CanRefreshLayout_can_bg_down) {
+                } else if (attr == com.canyinghao.canrefresh.R.styleable.CanRefreshLayout_can_bg_down) {
 
                     mLoadMoreBackgroundResource = a.getResourceId(attr, android.R.color.transparent);
 
-                } else if (attr == R.styleable.CanRefreshLayout_can_is_coo) {
+                } else if (attr == com.canyinghao.canrefresh.R.styleable.CanRefreshLayout_can_is_coo) {
 
                     mIsCoo = a.getBoolean(attr, false);
 
@@ -359,30 +362,52 @@ public class CanRefreshLayout extends ViewGroup {
                 || mHeadStyle == MID) {
 
 
-            mContentView.bringToFront();
+            bringChildToFront(mContentView);
 
         }
 
         if (mFootStyle == LOWER
                 || mFootStyle == MID) {
 
-            mContentView.bringToFront();
+
+            bringChildToFront(mContentView);
+        }
+
+
+        if (mHeaderView != null && (mHeadStyle == CLASSIC
+                || mHeadStyle == UPPER)) {
+
+
+            bringChildToFront(mHeaderView);
+        }
+
+        if (mFooterView != null && (mFootStyle == CLASSIC
+                || mFootStyle == UPPER)) {
+
+
+            bringChildToFront(mFooterView);
 
         }
 
 
-        if (mHeaderView != null && mHeadStyle == CLASSIC
-                || mHeadStyle == UPPER) {
+        int count = getChildCount();
 
-            mHeaderView.bringToFront();
+        List<View> list = new ArrayList<>();
 
+        for (int i = 0; i < count; i++) {
+
+            View v = getChildAt(i);
+
+            if (v != mHeaderView && v != mFooterView && v != mContentView) {
+
+                list.add(v);
+            }
 
         }
 
-        if (mFooterView != null && mFootStyle == CLASSIC
-                || mFootStyle == UPPER) {
+        for (View v : list) {
 
-            mFooterView.bringToFront();
+            bringChildToFront(v);
 
         }
 
@@ -399,10 +424,10 @@ public class CanRefreshLayout extends ViewGroup {
         final int childCount = getChildCount();
 
         if (childCount > 0) {
-            mHeaderView = findViewById(R.id.can_refresh_header);
-            mContentView = findViewById(R.id.can_content_view);
-            mFooterView = findViewById(R.id.can_refresh_footer);
-            mScrollView = findViewById(R.id.can_scroll_view);
+            mHeaderView = findViewById(com.canyinghao.canrefresh.R.id.can_refresh_header);
+            mContentView = findViewById(com.canyinghao.canrefresh.R.id.can_content_view);
+            mFooterView = findViewById(com.canyinghao.canrefresh.R.id.can_refresh_footer);
+            mScrollView = findViewById(com.canyinghao.canrefresh.R.id.can_scroll_view);
         }
 
         if (mContentView == null) {
@@ -454,6 +479,7 @@ public class CanRefreshLayout extends ViewGroup {
 
         super.onFinishInflate();
 
+
         setStyle(mHeadStyle, mFootStyle);
 
     }
@@ -463,6 +489,7 @@ public class CanRefreshLayout extends ViewGroup {
     protected void onLayout(boolean b, int i, int i1, int i2, int i3) {
 
         childLayout();
+
 
     }
 
@@ -507,6 +534,30 @@ public class CanRefreshLayout extends ViewGroup {
             mContentView.layout(left, top, right, bottom);
         }
 
+
+        int count = getChildCount();
+
+        for (int i = 0; i < count; i++) {
+
+            View v = getChildAt(i);
+
+            if (v != mHeaderView && v != mFooterView && v != mContentView) {
+
+                MarginLayoutParams lp = (MarginLayoutParams) v.getLayoutParams();
+                int left = paddingLeft + lp.leftMargin;
+                int top = paddingTop + lp.topMargin + mContentOffY;
+
+                int right = left + v.getMeasuredWidth();
+                int bottom = top + v.getMeasuredHeight();
+
+                v.layout(left, top, right, bottom);
+
+            }
+
+
+        }
+
+
     }
 
 
@@ -541,6 +592,22 @@ public class CanRefreshLayout extends ViewGroup {
 
 
             measureChildWithMargins(mContentView, widthMeasureSpec, 0, heightMeasureSpec, 0);
+        }
+
+        int count = getChildCount();
+
+        for (int i = 0; i < count; i++) {
+
+            View v = getChildAt(i);
+
+            if (v != mHeaderView && v != mFooterView && v != mContentView) {
+
+                measureChildWithMargins(v, widthMeasureSpec, 0, heightMeasureSpec, 0);
+
+
+            }
+
+
         }
 
 
@@ -643,7 +710,7 @@ public class CanRefreshLayout extends ViewGroup {
     @Override
     public boolean onTouchEvent(MotionEvent e) {
 
-//     当是不可滑动的view里进入
+        //     当是不可滑动的view里进入
         if (!canChildScrollDown() && !canChildScrollUp()) {
 
 
@@ -993,10 +1060,9 @@ public class CanRefreshLayout extends ViewGroup {
                 } else if (mHeadStyle == MID) {
 
 
-                    int offY = moveY / 2 + mHeaderHeight / 2;
+                    mHeadOffY = moveY / 2 + mHeaderHeight / 2;
 
 
-                    mHeadOffY = offY;
                     mContentOffY = moveY;
 
 
@@ -1020,10 +1086,8 @@ public class CanRefreshLayout extends ViewGroup {
                 } else if (mFootStyle == MID) {
 
 
-                    int offY = moveY / 2 + mFooterHeight / 2;
+                    mFootOffY= moveY / 2 + mFooterHeight / 2;
 
-
-                    mFootOffY = offY;
                     mContentOffY = -moveY;
 
 
@@ -1035,13 +1099,9 @@ public class CanRefreshLayout extends ViewGroup {
         } else {
 
 
-            if (isHeader) {
-                layoutMoveSmooth(isHeader, moveY, mHeaderHeight);
+            layoutMoveSmooth(isHeader, moveY, isHeader?mHeaderHeight:mFooterHeight);
 
-            } else {
 
-                layoutMoveSmooth(isHeader, moveY, mFooterHeight);
-            }
 
 
         }
@@ -1188,47 +1248,6 @@ public class CanRefreshLayout extends ViewGroup {
         super.computeScroll();
     }
 
-    @Override
-    protected boolean checkLayoutParams(ViewGroup.LayoutParams p) {
-        return p != null && p instanceof LayoutParams;
-    }
-
-    @Override
-    protected ViewGroup.LayoutParams generateDefaultLayoutParams() {
-        return new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-    }
-
-    @Override
-    protected ViewGroup.LayoutParams generateLayoutParams(ViewGroup.LayoutParams p) {
-        return new LayoutParams(p);
-    }
-
-    @Override
-    public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attrs) {
-        return new LayoutParams(getContext(), attrs);
-    }
-
-
-    public static class LayoutParams extends MarginLayoutParams {
-
-        public LayoutParams(Context c, AttributeSet attrs) {
-            super(c, attrs);
-        }
-
-        public LayoutParams(int width, int height) {
-            super(width, height);
-        }
-
-        @SuppressWarnings({"unused"})
-        public LayoutParams(MarginLayoutParams source) {
-            super(source);
-        }
-
-        public LayoutParams(ViewGroup.LayoutParams source) {
-            super(source);
-        }
-    }
-
 
     private CanRefresh getHeaderInterface() {
         return (CanRefresh) mHeaderView;
@@ -1249,11 +1268,8 @@ public class CanRefreshLayout extends ViewGroup {
 
         if (mIsCoo) {
 
-            if (isDependentOpen) {
-                return false;
-            } else {
-                return true;
-            }
+
+            return  !isDependentOpen;
 
         }
         return canScrollUp(mContentView);
@@ -1285,11 +1301,8 @@ public class CanRefreshLayout extends ViewGroup {
 
         if (mIsCoo) {
 
-            if (isDependentOpen) {
-                return true;
-            }
 
-            return canScrollDown(mScrollView);
+            return isDependentOpen || canScrollDown(mScrollView);
 
 
         }

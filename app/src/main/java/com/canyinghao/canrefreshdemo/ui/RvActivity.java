@@ -21,7 +21,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Created by yangjian on 16/1/21.
+ * Created by canyinghao on 16/1/21.
  */
 public class RvActivity extends AppCompatActivity {
 
@@ -79,7 +79,7 @@ public class RvActivity extends AppCompatActivity {
 
 
 
-        adapter.addFragment(RVRefreshFragment.newInstance(0), strs[0]);
+        adapter.addFragment(RVRefreshFragment1.newInstance(0), strs[0]);
         adapter.addFragment(RVRefreshFragment.newInstance(1), strs[1]);
         adapter.addFragment(RVRefreshFragment.newInstance(2), strs[2]);
         adapter.addFragment(RVRefreshFragment.newInstance(3), strs[3]);

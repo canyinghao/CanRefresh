@@ -15,7 +15,7 @@ import butterknife.OnClick;
 
 
 /**
- * Created by yangjian on 16/1/24.
+ * Created by canyinghao on 16/1/24.
  */
 public class LinearLayoutFragment extends Fragment implements CanRefreshLayout.OnRefreshListener, CanRefreshLayout.OnLoadMoreListener {
 
