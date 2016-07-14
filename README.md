@@ -6,7 +6,7 @@
 
 ##添加依赖
 ```JAVA
-compile 'com.canyinghao:canrefresh:1.0.3'
+compile 'com.canyinghao:canrefresh:1.0.4'
 ```
 
 ## 使用方式 
@@ -194,6 +194,9 @@ public class RVRefreshFragment extends Fragment implements CanRefreshLayout.OnRe
 **2. 注意事项**  
 虽说能适配任何view，但用法还是有一些规则的。不能使用RelativeLayout里面包一个RecyclerView，然后给RelativeLayout添加下拉刷新，这样的用法会出问题。  
 **3. 更新日志**  
+2016.7.14  
+1.适配了开源项目[CanRecyclerView](https://github.com/canyinghao/CanRecyclerView)里面的CanRecyclerViewHeaderFooter，使RecyclerView支持自动加载。  
+
 
 2016.6.30  
 1.添加对CoordinatorLayout的支持。  
