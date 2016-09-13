@@ -19,7 +19,7 @@ import com.canyinghao.canrefresh.shapeloading.ShapeLoadingRefreshView;
 import com.canyinghao.canrefreshdemo.R;
 import com.canyinghao.canrefreshdemo.model.MainBean;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -28,24 +28,24 @@ import butterknife.ButterKnife;
 public class CooActivity extends AppCompatActivity implements CanRefreshLayout.OnRefreshListener, CanRefreshLayout.OnLoadMoreListener {
 
 
-    @Bind(R.id.can_refresh_footer)
+    @BindView(R.id.can_refresh_footer)
     RotateRefreshView canRefreshFooter;
-    @Bind(R.id.header)
+    @BindView(R.id.header)
     ImageView header;
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.toolbarlayout)
+    @BindView(R.id.toolbarlayout)
     CollapsingToolbarLayout toolbarlayout;
-    @Bind(R.id.appbar)
+    @BindView(R.id.appbar)
     AppBarLayout appbar;
-    @Bind(R.id.can_scroll_view)
+    @BindView(R.id.can_scroll_view)
     RecyclerView recyclerView;
-    @Bind(R.id.can_content_view)
+    @BindView(R.id.can_content_view)
     CoordinatorLayout canContentView;
-    @Bind(R.id.refresh)
+    @BindView(R.id.refresh)
     CanRefreshLayout refresh;
     CanRVAdapter adapter;
-    @Bind(R.id.can_refresh_header)
+    @BindView(R.id.can_refresh_header)
     ShapeLoadingRefreshView canRefreshHeader;
 
     @Override

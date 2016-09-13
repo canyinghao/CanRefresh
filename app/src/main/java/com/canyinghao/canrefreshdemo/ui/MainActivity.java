@@ -15,7 +15,7 @@ import com.canyinghao.canadapter.CanRVAdapter;
 import com.canyinghao.canrefreshdemo.R;
 import com.canyinghao.canrefreshdemo.model.MainBean;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -24,12 +24,12 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
 
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.viewPager)
+    @BindView(R.id.viewPager)
     RecyclerView viewPager;
-    @Bind(R.id.cd)
+    @BindView(R.id.cd)
     View cd;
 
     @Override

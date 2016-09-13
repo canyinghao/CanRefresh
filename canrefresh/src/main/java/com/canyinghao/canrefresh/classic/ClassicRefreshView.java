@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.canyinghao.canrefresh.CanRefresh;
 import com.canyinghao.canrefresh.R;
+import com.nineoldandroids.view.ViewHelper;
 
 
 public class ClassicRefreshView extends FrameLayout implements CanRefresh {
@@ -163,7 +164,7 @@ public class ClassicRefreshView extends FrameLayout implements CanRefresh {
 
         if (!isHead) {
 
-            ivArrow.setRotation(180);
+            ViewHelper.setRotation(ivArrow,180);
         }
     }
 

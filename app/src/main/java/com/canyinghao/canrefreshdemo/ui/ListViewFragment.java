@@ -15,7 +15,7 @@ import com.canyinghao.canrefreshdemo.App;
 import com.canyinghao.canrefreshdemo.R;
 import com.canyinghao.canrefreshdemo.model.MainBean;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
@@ -24,9 +24,9 @@ import butterknife.ButterKnife;
  */
 public class ListViewFragment extends Fragment implements CanRefreshLayout.OnRefreshListener,CanRefreshLayout.OnLoadMoreListener {
 
-    @Bind(R.id.can_content_view)
+    @BindView(R.id.can_content_view)
     ListView listView;
-    @Bind(R.id.refresh)
+    @BindView(R.id.refresh)
     CanRefreshLayout refresh;
 
     CanAdapter adapter;
@@ -132,9 +132,5 @@ public class ListViewFragment extends Fragment implements CanRefreshLayout.OnRef
     }
 
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
+
 }

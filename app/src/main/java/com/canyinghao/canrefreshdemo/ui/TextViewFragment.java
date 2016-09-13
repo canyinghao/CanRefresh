@@ -12,17 +12,17 @@ import android.widget.TextView;
 import com.canyinghao.canrefresh.CanRefreshLayout;
 import com.canyinghao.canrefreshdemo.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  * Created by canyinghao on 16/1/24.
  */
 public class TextViewFragment extends Fragment implements CanRefreshLayout.OnRefreshListener, CanRefreshLayout.OnLoadMoreListener {
-    @Bind(R.id.can_content_view)
+    @BindView(R.id.can_content_view)
     TextView tvAbout;
    
-    @Bind(R.id.refresh)
+    @BindView(R.id.refresh)
     CanRefreshLayout refresh;
 
 
@@ -72,9 +72,5 @@ public class TextViewFragment extends Fragment implements CanRefreshLayout.OnRef
         }, 2000);
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
+
 }

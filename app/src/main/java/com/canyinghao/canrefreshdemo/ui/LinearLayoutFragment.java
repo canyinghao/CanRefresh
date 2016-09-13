@@ -9,9 +9,8 @@ import android.view.ViewGroup;
 import com.canyinghao.canrefresh.CanRefreshLayout;
 import com.canyinghao.canrefreshdemo.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 
 /**
@@ -20,7 +19,7 @@ import butterknife.OnClick;
 public class LinearLayoutFragment extends Fragment implements CanRefreshLayout.OnRefreshListener, CanRefreshLayout.OnLoadMoreListener {
 
    
-    @Bind(R.id.refresh)
+    @BindView(R.id.refresh)
     CanRefreshLayout refresh;
 
 
@@ -69,9 +68,5 @@ public class LinearLayoutFragment extends Fragment implements CanRefreshLayout.O
         }, 2000);
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
+
 }

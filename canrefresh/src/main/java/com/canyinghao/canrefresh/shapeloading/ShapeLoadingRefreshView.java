@@ -1,8 +1,6 @@
 package com.canyinghao.canrefresh.shapeloading;
 
-import android.animation.Animator;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -16,6 +14,10 @@ import android.widget.ImageView;
 
 import com.canyinghao.canrefresh.CanRefresh;
 import com.canyinghao.canrefresh.R;
+import com.nineoldandroids.animation.Animator;
+import com.nineoldandroids.animation.AnimatorSet;
+import com.nineoldandroids.animation.ObjectAnimator;
+import com.nineoldandroids.view.ViewHelper;
 
 /**
  * Created by canyinghao on 16/6/29.
@@ -257,21 +259,20 @@ public class ShapeLoadingRefreshView extends FrameLayout implements CanRefresh {
     public void onPositionChange(float currentPercent) {
 
 
+        float rotation = currentPercent * 360;
+        if (rotation >= 360) {
 
-            float rotation = currentPercent * 360;
-            if (rotation>=360){
+            rotation = 360;
+        }
 
-                rotation =360;
-            }
+        float distance = currentPercent * MAX_DISTANCE;
+        if (distance >= MAX_DISTANCE) {
 
-            float distance = currentPercent * MAX_DISTANCE;
-            if (distance>=MAX_DISTANCE){
+            distance = MAX_DISTANCE;
+        }
 
-                distance =MAX_DISTANCE;
-            }
-            mShapeLoadingView.setRotation(rotation);
-            mShapeLoadingView.setTranslationY(distance);
-
+        ViewHelper.setRotation(mShapeLoadingView, rotation);
+        ViewHelper.setTranslationY(mShapeLoadingView, distance);
 
 
     }

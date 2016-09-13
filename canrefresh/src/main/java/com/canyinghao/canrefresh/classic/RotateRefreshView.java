@@ -28,6 +28,7 @@ import android.widget.ImageView.ScaleType;
 
 import com.canyinghao.canrefresh.CanRefresh;
 import com.canyinghao.canrefresh.R;
+import com.nineoldandroids.view.ViewHelper;
 
 
 public class RotateRefreshView extends FrameLayout implements CanRefresh {
@@ -111,8 +112,8 @@ public class RotateRefreshView extends FrameLayout implements CanRefresh {
     public void onPositionChange(float currentPercent) {
 
 
-        ivRotate.setRotation(currentPercent*rotateHight);
-        
+
+        ViewHelper.setRotation(ivRotate,currentPercent*rotateHight);
         
     }
 

@@ -20,7 +20,7 @@ import com.canyinghao.canrefresh.storehouse.StoreHouseRefreshView;
 import com.canyinghao.canrefresh.yalantis.YalantisPhoenixRefreshView;
 import com.canyinghao.canrefreshdemo.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -29,7 +29,7 @@ import butterknife.OnClick;
  */
 public class CustomActivity extends AppCompatActivity implements CanRefreshLayout.OnRefreshListener, CanRefreshLayout.OnLoadMoreListener{
 
-    @Bind(R.id.refresh)
+    @BindView(R.id.refresh)
     CanRefreshLayout refresh;
     
     int headStyle;

@@ -19,7 +19,7 @@ import com.canyinghao.canrefreshdemo.App;
 import com.canyinghao.canrefreshdemo.R;
 import com.canyinghao.canrefreshdemo.model.MainBean;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
@@ -31,9 +31,9 @@ public class RVRefreshFragment extends Fragment implements CanRefreshLayout.OnRe
 
     public final static String TYPE = "type";
 
-    @Bind(R.id.can_content_view)
+    @BindView(R.id.can_content_view)
     RecyclerView recyclerView;
-    @Bind(R.id.refresh)
+    @BindView(R.id.refresh)
     CanRefreshLayout refresh;
     CanRVAdapter adapter;
 
@@ -171,11 +171,6 @@ public class RVRefreshFragment extends Fragment implements CanRefreshLayout.OnRe
     }
 
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
 
     @Override
     public void onRefresh() {
