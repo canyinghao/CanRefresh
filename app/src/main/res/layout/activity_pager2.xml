@@ -29,10 +29,10 @@
             app:tabMode="scrollable"
             app:tabPaddingEnd="10dp"
             app:tabTextAppearance="@style/TextAppearance.AppCompat.Subhead"
-            app:tabIndicatorColor="@color/color_button"
+            app:tabIndicatorColor="@color/color_red"
 
-            app:tabSelectedTextColor="@color/color_button"
-            app:tabTextColor="@color/black2"/>
+            app:tabSelectedTextColor="@color/color_red"
+            app:tabTextColor="@color/white"/>
 
     </android.support.design.widget.AppBarLayout>
 

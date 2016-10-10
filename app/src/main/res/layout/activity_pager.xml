@@ -25,14 +25,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            app:tabIndicatorColor="@color/color_button"
             app:tabIndicatorHeight="3dp"
             app:tabMode="scrollable"
             app:tabPaddingEnd="10dp"
-            app:tabSelectedTextColor="@color/color_button"
-
             app:tabTextAppearance="@style/TextAppearance.AppCompat.Subhead"
-            app:tabTextColor="@color/black2" />
+            app:tabIndicatorColor="@color/color_red"
+
+            app:tabSelectedTextColor="@color/color_red"
+            app:tabTextColor="@color/white"/>
 
     </android.support.design.widget.AppBarLayout>
 

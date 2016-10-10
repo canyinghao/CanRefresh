@@ -16,6 +16,7 @@
 package com.canyinghao.canrefresh.classic;
 
 import android.content.Context;
+import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +29,7 @@ import android.widget.ImageView.ScaleType;
 
 import com.canyinghao.canrefresh.CanRefresh;
 import com.canyinghao.canrefresh.R;
-import com.nineoldandroids.view.ViewHelper;
+
 
 
 public class RotateRefreshView extends FrameLayout implements CanRefresh {
@@ -113,7 +114,7 @@ public class RotateRefreshView extends FrameLayout implements CanRefresh {
 
 
 
-        ViewHelper.setRotation(ivRotate,currentPercent*rotateHight);
+        ViewCompat.setRotation(ivRotate,currentPercent*rotateHight);
         
     }
 

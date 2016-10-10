@@ -1,6 +1,7 @@
 package com.canyinghao.canrefresh.classic;
 
 import android.content.Context;
+import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,7 @@ import android.widget.TextView;
 
 import com.canyinghao.canrefresh.CanRefresh;
 import com.canyinghao.canrefresh.R;
-import com.nineoldandroids.view.ViewHelper;
+
 
 
 public class ClassicRefreshView extends FrameLayout implements CanRefresh {
@@ -164,7 +165,8 @@ public class ClassicRefreshView extends FrameLayout implements CanRefresh {
 
         if (!isHead) {
 
-            ViewHelper.setRotation(ivArrow,180);
+            ViewCompat.setRotation(ivArrow,180);
+
         }
     }
 

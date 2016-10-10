@@ -2,6 +2,7 @@ package com.canyinghao.canrefresh.shapeloading;
 
 
 import android.content.Context;
+import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -17,7 +18,6 @@ import com.canyinghao.canrefresh.R;
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.AnimatorSet;
 import com.nineoldandroids.animation.ObjectAnimator;
-import com.nineoldandroids.view.ViewHelper;
 
 /**
  * Created by canyinghao on 16/6/29.
@@ -271,8 +271,8 @@ public class ShapeLoadingRefreshView extends FrameLayout implements CanRefresh {
             distance = MAX_DISTANCE;
         }
 
-        ViewHelper.setRotation(mShapeLoadingView, rotation);
-        ViewHelper.setTranslationY(mShapeLoadingView, distance);
+        ViewCompat.setRotation(mShapeLoadingView, rotation);
+        ViewCompat.setTranslationY(mShapeLoadingView, distance);
 
 
     }

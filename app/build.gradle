@@ -30,7 +30,7 @@ dependencies {
     compile 'com.canyinghao:canadapter:1.0.6'
     compile 'com.jakewharton:butterknife:8.4.0'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
-    compile 'com.canyinghao:canrecyclerview:1.0.4'
+    compile 'com.canyinghao:canrecyclerview:1.0.7'
     compile project(':canrefresh')
 
 
