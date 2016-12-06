@@ -1,10 +1,14 @@
 package com.canyinghao.canrefreshdemo;
 
 import android.app.Application;
+import android.util.Log;
 import android.widget.Toast;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
-public class App extends Application {
+
+public class App extends Application implements Thread.UncaughtExceptionHandler{
     private static App sInstance;
 
 
@@ -13,6 +17,9 @@ public class App extends Application {
         super.onCreate();
 
         sInstance = this;
+
+
+        Thread.setDefaultUncaughtExceptionHandler(this);
 
 
     }
@@ -32,4 +39,18 @@ public class App extends Application {
         Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void uncaughtException(Thread t, Throwable ex) {
+
+
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        ex.printStackTrace(pw);
+        pw.flush();
+
+        String stackTrace = sw.toString();
+
+
+        Log.e("Canyinghao",stackTrace);
+    }
 }

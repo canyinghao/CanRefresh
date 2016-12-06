@@ -25,6 +25,7 @@
         <activity android:name=".ui.ScrollActivity"/>
         <activity android:name=".ui.CustomActivity"/>
         <activity android:name=".ui.CooActivity"/>
+        <activity android:name=".ui.CooActivity2"/>
     </application>
 
 </manifest>

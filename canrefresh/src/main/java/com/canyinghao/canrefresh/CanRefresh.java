@@ -47,7 +47,7 @@ public interface CanRefresh {
 
     /**
      * 是下拉还是上拉
-     * @param isHeader
+     * @param isHeader boolean
      */
     public void setIsHeaderOrFooter(boolean isHeader);
 }

@@ -9,6 +9,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.NestedScrollingChild;
 import android.support.v4.view.ViewCompat;
+import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -32,8 +33,6 @@ import java.util.List;
  * limitations under the License.
  */
 public class CanRefreshLayout extends FrameLayout {
-
-    public static String TAG = CanRefreshLayout.class.getSimpleName();
 
     //  默认刷新时间
     private static final int DEFAULT_DURATION = 300;
@@ -69,6 +68,11 @@ public class CanRefreshLayout extends FrameLayout {
 
     //    列表  mIsCoo=true时有效
     protected View mScrollView;
+
+    protected ViewPager mViewPager;
+
+    // 0 mScrollView是NestedScrollingChild  1 是viewpager
+    protected boolean mIsViewPager;
 
     protected AppBarLayout mAppBar;
 
@@ -232,7 +236,7 @@ public class CanRefreshLayout extends FrameLayout {
     /**
      * 设置下拉刷新时背景
      *
-     * @param mRefreshBackgroundResource
+     * @param mRefreshBackgroundResource int
      */
     public void setRefreshBackgroundResource(int mRefreshBackgroundResource) {
         this.mRefreshBackgroundResource = mRefreshBackgroundResource;
@@ -241,7 +245,7 @@ public class CanRefreshLayout extends FrameLayout {
     /**
      * 设置加载更多时背景
      *
-     * @param mLoadMoreBackgroundResource
+     * @param mLoadMoreBackgroundResource int
      */
     public void setLoadMoreBackgroundResource(int mLoadMoreBackgroundResource) {
         this.mLoadMoreBackgroundResource = mLoadMoreBackgroundResource;
@@ -250,7 +254,7 @@ public class CanRefreshLayout extends FrameLayout {
     /**
      * 自己设置高度时不使用自动获取高度
      *
-     * @param mHeaderHeight
+     * @param mHeaderHeight int
      */
     public void setHeaderHeight(int mHeaderHeight) {
         this.mHeaderHeight = mHeaderHeight;
@@ -260,7 +264,7 @@ public class CanRefreshLayout extends FrameLayout {
     /**
      * 自己设置高度时不使用自动获取高度
      *
-     * @param mFooterHeight
+     * @param mFooterHeight int
      */
     public void setFooterHeight(int mFooterHeight) {
         this.mFooterHeight = mFooterHeight;
@@ -270,7 +274,7 @@ public class CanRefreshLayout extends FrameLayout {
     /**
      * 设置是否可下拉刷新
      *
-     * @param enable
+     * @param enable boolean
      */
     public void setRefreshEnabled(boolean enable) {
         this.mRefreshEnabled = enable;
@@ -280,7 +284,7 @@ public class CanRefreshLayout extends FrameLayout {
     /**
      * 设置是否可上拉加载
      *
-     * @param enable
+     * @param enable boolean
      */
     public void setLoadMoreEnabled(boolean enable) {
         this.mLoadMoreEnabled = enable;
@@ -290,7 +294,7 @@ public class CanRefreshLayout extends FrameLayout {
     /**
      * 设置刷新监听
      *
-     * @param mOnRefreshListener
+     * @param mOnRefreshListener OnRefreshListener
      */
     public void setOnRefreshListener(@NonNull OnRefreshListener mOnRefreshListener) {
         this.mOnRefreshListener = mOnRefreshListener;
@@ -300,7 +304,7 @@ public class CanRefreshLayout extends FrameLayout {
     /**
      * 设置加载更多监听
      *
-     * @param mOnLoadMoreListener
+     * @param mOnLoadMoreListener OnLoadMoreListener
      */
     public void setOnLoadMoreListener(@NonNull OnLoadMoreListener mOnLoadMoreListener) {
         this.mOnLoadMoreListener = mOnLoadMoreListener;
@@ -310,7 +314,7 @@ public class CanRefreshLayout extends FrameLayout {
     /**
      * 设置摩擦系数
      *
-     * @param mFriction
+     * @param mFriction FloatRange
      */
     public void setFriction(@FloatRange(from = 0.0, to = 1.0) float mFriction) {
 
@@ -321,7 +325,7 @@ public class CanRefreshLayout extends FrameLayout {
     /**
      * 设置默认刷新时间
      *
-     * @param mDuration
+     * @param mDuration int
      */
     public void setDuration(int mDuration) {
         this.mDuration = mDuration;
@@ -330,7 +334,7 @@ public class CanRefreshLayout extends FrameLayout {
     /**
      * 设置滑动单位距离
      *
-     * @param mSmoothLength
+     * @param mSmoothLength int
      */
     public void setSmoothLength(int mSmoothLength) {
         this.mSmoothLength = mSmoothLength;
@@ -339,7 +343,7 @@ public class CanRefreshLayout extends FrameLayout {
     /**
      * 设置滑动单位时间
      *
-     * @param mSmoothDuration
+     * @param mSmoothDuration int
      */
     public void setSmoothDuration(int mSmoothDuration) {
         this.mSmoothDuration = mSmoothDuration;
@@ -349,8 +353,8 @@ public class CanRefreshLayout extends FrameLayout {
     /**
      * 设置风格
      *
-     * @param headStyle
-     * @param footStyle
+     * @param headStyle IntRange
+     * @param footStyle IntRange
      */
     public void setStyle(@IntRange(from = 0, to = 3) int headStyle, @IntRange(from = 0, to = 3) int footStyle) {
 
@@ -452,8 +456,17 @@ public class CanRefreshLayout extends FrameLayout {
                 throw new IllegalStateException("mScrollView is null");
             }
 
-            if (!(mScrollView instanceof NestedScrollingChild)) {
-                throw new IllegalStateException("mScrollView is not NestedScrollingChild");
+            if (mScrollView instanceof ViewPager) {
+
+                mViewPager = (ViewPager) mScrollView;
+                mIsViewPager = true;
+
+            } else if (mScrollView instanceof NestedScrollingChild) {
+
+                mIsViewPager = false;
+
+            } else {
+                throw new IllegalStateException("mScrollView is not NestedScrollingChild or ViewPager");
             }
         }
 
@@ -617,7 +630,7 @@ public class CanRefreshLayout extends FrameLayout {
     /**
      * 能否刷新
      *
-     * @return
+     * @return boolean
      */
     private boolean canRefresh() {
 
@@ -628,7 +641,7 @@ public class CanRefreshLayout extends FrameLayout {
     /**
      * 能否加载更多
      *
-     * @return
+     * @return boolean
      */
     private boolean canLoadMore() {
 
@@ -797,9 +810,9 @@ public class CanRefreshLayout extends FrameLayout {
     /**
      * 触摸滑动处理
      *
-     * @param e
-     * @param isHead
-     * @return
+     * @param e      MotionEvent
+     * @param isHead boolean
+     * @return boolean
      */
     private boolean touch(MotionEvent e, boolean isHead) {
 
@@ -880,7 +893,7 @@ public class CanRefreshLayout extends FrameLayout {
                     if (Math.abs(scrollSum) > mHeaderHeight) {
 
 
-                        smoothMove(true, false, mHeadStyle == CLASSIC?-mHeaderHeight:mHeaderHeight, mHeaderHeight);
+                        smoothMove(true, false, mHeadStyle == CLASSIC ? -mHeaderHeight : mHeaderHeight, mHeaderHeight);
                         getHeaderInterface().onRelease();
                         refreshing();
                     } else {
@@ -895,13 +908,13 @@ public class CanRefreshLayout extends FrameLayout {
                     if (Math.abs(scrollSum) > mFooterHeight) {
 
 
-                        smoothMove(false, false, mFootStyle == CLASSIC?mContentView.getMeasuredHeight() - getMeasuredHeight() + mFooterHeight:mFooterHeight, mFooterHeight);
+                        smoothMove(false, false, mFootStyle == CLASSIC ? mContentView.getMeasuredHeight() - getMeasuredHeight() + mFooterHeight : mFooterHeight, mFooterHeight);
 
                         getFooterInterface().onRelease();
                         loadingMore();
                     } else {
 
-                        smoothMove(false, false, mFootStyle == CLASSIC?mContentView.getMeasuredHeight() - getMeasuredHeight():0, 0);
+                        smoothMove(false, false, mFootStyle == CLASSIC ? mContentView.getMeasuredHeight() - getMeasuredHeight() : 0, 0);
 
                     }
 
@@ -925,7 +938,7 @@ public class CanRefreshLayout extends FrameLayout {
     /**
      * 滑动距离越大比率越小，越难拖动
      *
-     * @return
+     * @return float
      */
     private float getRatio() {
 
@@ -952,10 +965,10 @@ public class CanRefreshLayout extends FrameLayout {
     /**
      * * 滚动布局的方法
      *
-     * @param isHeader
-     * @param isMove      手指在移动还是已经抬起
-     * @param moveScrollY
-     * @param moveY
+     * @param isHeader    boolean
+     * @param isMove      boolean  手指在移动还是已经抬起
+     * @param moveScrollY int
+     * @param moveY       int
      */
     private void smoothMove(boolean isHeader, boolean isMove, int moveScrollY, int moveY) {
 
@@ -963,7 +976,6 @@ public class CanRefreshLayout extends FrameLayout {
         if (isHeader) {
 
             if (mHeadStyle == CLASSIC) {
-
 
 
                 if (isMove) {
@@ -974,7 +986,7 @@ public class CanRefreshLayout extends FrameLayout {
                 }
             } else {
 
-                layoutMove(isHeader, isMove,moveScrollY, moveY);
+                layoutMove(true, isMove, moveScrollY, moveY);
             }
 
 
@@ -992,7 +1004,7 @@ public class CanRefreshLayout extends FrameLayout {
             } else {
 
 
-                layoutMove(isHeader, isMove,moveScrollY, moveY);
+                layoutMove(false, isMove, moveScrollY, moveY);
             }
 
         }
@@ -1003,8 +1015,8 @@ public class CanRefreshLayout extends FrameLayout {
     /**
      * 调用此方法滚动到目标位置
      *
-     * @param fx
-     * @param fy
+     * @param fx int
+     * @param fy int
      */
     public void smoothScrollTo(int fx, int fy) {
         int dx = fx - mScroller.getFinalX();
@@ -1015,8 +1027,8 @@ public class CanRefreshLayout extends FrameLayout {
     /**
      * 调用此方法设置滚动的相对偏移
      *
-     * @param dx
-     * @param dy
+     * @param dx int
+     * @param dy int
      */
     public void smoothScrollBy(int dx, int dy) {
 
@@ -1031,12 +1043,12 @@ public class CanRefreshLayout extends FrameLayout {
     /**
      * 通过设置偏移滚动到目标位置
      *
-     * @param isHeader 是否是刷新头
+     * @param isHeader    是否是刷新头
      * @param moveScrollY 移动开始位置
-     * @param isMove 是否移动中
-     * @param moveY  移动目标位置
+     * @param isMove      是否移动中
+     * @param moveY       移动目标位置
      */
-    private void layoutMove(boolean isHeader, boolean isMove,int moveScrollY, int moveY) {
+    private void layoutMove(boolean isHeader, boolean isMove, int moveScrollY, int moveY) {
 
         if (isMove) {
 
@@ -1098,7 +1110,7 @@ public class CanRefreshLayout extends FrameLayout {
         } else {
 
 
-            layoutMoveSmooth(isHeader, moveScrollY,moveY);
+            layoutMoveSmooth(isHeader, moveScrollY, moveY);
 
 
         }
@@ -1106,24 +1118,20 @@ public class CanRefreshLayout extends FrameLayout {
         requestLayout();
     }
 
-    private void layoutMoveSmooth(boolean isHeader, int moveScrollY,int moveY) {
+    private void layoutMoveSmooth(boolean isHeader, int moveScrollY, int moveY) {
 
 
-
-
-
-        if (moveScrollY >0) {
+        if (moveScrollY > 0) {
 
             tempY = moveScrollY;
-            layoutSmoothMove(isHeader, moveScrollY,moveY);
+            layoutSmoothMove(isHeader, moveScrollY, moveY);
 
         } else {
             tempY = Math.abs(scrollSum);
-            layoutSmoothMove(isHeader, moveScrollY,moveY);
+            layoutSmoothMove(isHeader, moveScrollY, moveY);
 
 
         }
-
 
 
     }
@@ -1135,18 +1143,18 @@ public class CanRefreshLayout extends FrameLayout {
 
         if (tempY <= moveY) {
 
-            layoutMove(isHeader, true, moveScrollY,moveY);
+            layoutMove(isHeader, true, moveScrollY, moveY);
             return;
         }
 
 
-        layoutMove(isHeader, true, moveScrollY,tempY);
+        layoutMove(isHeader, true, moveScrollY, tempY);
 
 
         postDelayed(new Runnable() {
             @Override
             public void run() {
-                layoutSmoothMove(isHeader,moveScrollY, moveY);
+                layoutSmoothMove(isHeader, moveScrollY, moveY);
             }
         }, mSmoothDuration);
 
@@ -1166,7 +1174,7 @@ public class CanRefreshLayout extends FrameLayout {
         postDelayed(new Runnable() {
             @Override
             public void run() {
-                smoothMove(true, false, mHeadStyle == CLASSIC?0:mHeaderHeight, 0);
+                smoothMove(true, false, mHeadStyle == CLASSIC ? 0 : mHeaderHeight, 0);
                 isHeaderRefreshing = false;
                 getHeaderInterface().onComplete();
                 getHeaderInterface().onReset();
@@ -1187,7 +1195,7 @@ public class CanRefreshLayout extends FrameLayout {
         postDelayed(new Runnable() {
             @Override
             public void run() {
-                smoothMove(false, false, mFootStyle == CLASSIC?mContentView.getMeasuredHeight() - getMeasuredHeight():mFooterHeight, 0);
+                smoothMove(false, false, mFootStyle == CLASSIC ? mContentView.getMeasuredHeight() - getMeasuredHeight() : mFooterHeight, 0);
 
                 isFooterRefreshing = false;
                 getFooterInterface().onComplete();
@@ -1264,7 +1272,7 @@ public class CanRefreshLayout extends FrameLayout {
     /**
      * 是否能下拉
      *
-     * @return
+     * @return boolean
      */
     protected boolean canChildScrollUp() {
 
@@ -1297,14 +1305,23 @@ public class CanRefreshLayout extends FrameLayout {
     /**
      * 是否能上拉
      *
-     * @return
+     * @return boolean
      */
     protected boolean canChildScrollDown() {
 
 
         if (mIsCoo) {
 
+            if (mIsViewPager) {
+                int current = mViewPager.getCurrentItem();
+                if (current < mViewPager.getChildCount()) {
+                    mScrollView = mViewPager.getChildAt(current);
+                }
+            }
 
+            if (mScrollView == null) {
+                return false;
+            }
             return isDependentOpen || canScrollDown(mScrollView);
 
 

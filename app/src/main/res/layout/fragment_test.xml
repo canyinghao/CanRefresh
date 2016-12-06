@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+
+    >
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dimen_normal_big">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_normal"
+            android:layout_marginRight="@dimen/dimen_normal"
+            android:text="剧情简介"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/text_small" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_normal"
+            android:layout_marginLeft="@dimen/dimen_normal"
+            android:layout_marginRight="@dimen/dimen_normal"
+            android:layout_marginTop="@dimen/dimen_normal"
+            android:text="《知音漫客》改版周刊以后，分别以“锐、幻、萌、燃”为四刊基调，“锐”像是突然有了光，象征原创漫画在日漫统治大局下的突破，突出青春与梦追求过程中不可缺少的锐气，以及适合90后00后灵感与思想的闪现；“幻”凝聚了无限奇思妙想，象征青春成长中无可匹敌的想象力；“萌”兼收并蓄，在吸收日本萌文化的同时，强化爱的感觉和健康快乐的生活氛围；“燃”重头打造少年的梦想与青春张力，突出“热血”、“友情”、“努力”、“胜利”等漫画永恒的主题元素，象征中国动漫产业熊熊燃烧之势。漫客总结出这四种动漫特色，使之成为有共通点却又独立的文化个体，并结合中国传统文化精神，不断完善中国式动漫文化。"
+            android:textColor="@color/black2"
+            android:textSize="@dimen/text_small_little" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_line"
+            android:layout_marginLeft="@dimen/dimen_normal"
+            android:layout_marginRight="@dimen/dimen_normal"
+            android:background="@color/line" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_normal"
+            android:layout_marginRight="@dimen/dimen_normal"
+            android:layout_marginTop="@dimen/dimen_normal"
+            android:text="作者信息"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/text_small" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_normal"
+            android:layout_marginLeft="@dimen/dimen_normal"
+            android:layout_marginRight="@dimen/dimen_normal"
+            android:layout_marginTop="@dimen/dimen_normal"
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_normal"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/dimen_small"
+
+                    android:text="天蚕土豆 任翔"
+                    android:textColor="@color/black2"
+
+                    android:textSize="@dimen/text_small" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="粉丝 11m "
+                    android:textColor="@color/black3"
+                    android:textSize="@dimen/text_little_super" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+
+                android:paddingBottom="2dp"
+                android:paddingLeft="@dimen/dimen_small"
+
+                android:paddingRight="@dimen/dimen_small"
+                android:paddingTop="2dp"
+                android:text="粉Ta"
+                android:textColor="@color/black3"
+                android:textSize="@dimen/text_little" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_line"
+            android:layout_marginLeft="@dimen/dimen_normal"
+            android:layout_marginRight="@dimen/dimen_normal"
+            android:background="@color/line" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_normal"
+            android:layout_marginRight="@dimen/dimen_normal"
+            android:layout_marginTop="@dimen/dimen_normal"
+            android:text="作者公告"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/text_small" />
+
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_normal"
+            android:layout_marginLeft="@dimen/dimen_normal"
+            android:layout_marginRight="@dimen/dimen_normal"
+            android:layout_marginTop="@dimen/dimen_normal"
+            android:text="这个作者太懒了，什么都没说。"
+            android:textColor="@color/black2"
+            android:textSize="@dimen/text_small_little" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_line"
+            android:layout_marginLeft="@dimen/dimen_normal"
+            android:layout_marginRight="@dimen/dimen_normal"
+            android:background="@color/line" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/dimen_normal"
+            android:layout_marginRight="@dimen/dimen_normal"
+
+            android:drawablePadding="@dimen/dimen_small"
+            android:gravity="center_vertical"
+            android:text="作者作品"
+            android:textColor="@color/black2"
+            android:textSize="@dimen/text_small" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_normal"
+            android:layout_marginLeft="@dimen/dimen_normal"
+            android:layout_marginRight="@dimen/dimen_normal"
+            android:layout_marginTop="@dimen/dimen_normal"
+            android:text="《知音漫客》改版周刊以后，分别以“锐、幻、萌、燃”为四刊基调，“锐”像是突然有了光，象征原创漫画在日漫统治大局下的突破，突出青春与梦追求过程中不可缺少的锐气，以及适合90后00后灵感与思想的闪现；“幻”凝聚了无限奇思妙想，象征青春成长中无可匹敌的想象力；“萌”兼收并蓄，在吸收日本萌文化的同时，强化爱的感觉和健康快乐的生活氛围；“燃”重头打造少年的梦想与青春张力，突出“热血”、“友情”、“努力”、“胜利”等漫画永恒的主题元素，象征中国动漫产业熊熊燃烧之势。漫客总结出这四种动漫特色，使之成为有共通点却又独立的文化个体，并结合中国传统文化精神，不断完善中国式动漫文化。"
+            android:textColor="@color/black2"
+            android:textSize="@dimen/text_small_little" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_normal"
+            android:layout_marginLeft="@dimen/dimen_normal"
+            android:layout_marginRight="@dimen/dimen_normal"
+            android:layout_marginTop="@dimen/dimen_normal"
+            android:text="《知音漫客》改版周刊以后，分别以“锐、幻、萌、燃”为四刊基调，“锐”像是突然有了光，象征原创漫画在日漫统治大局下的突破，突出青春与梦追求过程中不可缺少的锐气，以及适合90后00后灵感与思想的闪现；“幻”凝聚了无限奇思妙想，象征青春成长中无可匹敌的想象力；“萌”兼收并蓄，在吸收日本萌文化的同时，强化爱的感觉和健康快乐的生活氛围；“燃”重头打造少年的梦想与青春张力，突出“热血”、“友情”、“努力”、“胜利”等漫画永恒的主题元素，象征中国动漫产业熊熊燃烧之势。漫客总结出这四种动漫特色，使之成为有共通点却又独立的文化个体，并结合中国传统文化精神，不断完善中国式动漫文化。"
+            android:textColor="@color/black2"
+            android:textSize="@dimen/text_small_little" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_normal"
+            android:layout_marginLeft="@dimen/dimen_normal"
+            android:layout_marginRight="@dimen/dimen_normal"
+            android:layout_marginTop="@dimen/dimen_normal"
+            android:text="《知音漫客》改版周刊以后，分别以“锐、幻、萌、燃”为四刊基调，“锐”像是突然有了光，象征原创漫画在日漫统治大局下的突破，突出青春与梦追求过程中不可缺少的锐气，以及适合90后00后灵感与思想的闪现；“幻”凝聚了无限奇思妙想，象征青春成长中无可匹敌的想象力；“萌”兼收并蓄，在吸收日本萌文化的同时，强化爱的感觉和健康快乐的生活氛围；“燃”重头打造少年的梦想与青春张力，突出“热血”、“友情”、“努力”、“胜利”等漫画永恒的主题元素，象征中国动漫产业熊熊燃烧之势。漫客总结出这四种动漫特色，使之成为有共通点却又独立的文化个体，并结合中国传统文化精神，不断完善中国式动漫文化。"
+            android:textColor="@color/black2"
+            android:textSize="@dimen/text_small_little" />
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

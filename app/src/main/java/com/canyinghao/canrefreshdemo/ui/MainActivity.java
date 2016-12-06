@@ -56,8 +56,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected void setItemListener(CanHolderHelper helper) {
 
-//                helper.setItemChildClickListener(R.id.tv_title);
-//                helper.setItemChildClickListener(R.id.tv_content);
+                helper.setItemChildClickListener(R.id.list_item);
 
             }
         };
@@ -77,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         adapter.setOnItemListener(new CanOnItemListener(){
 
-            public void onRVItemClick(ViewGroup parent, View itemView, int position){
+            public void onItemChildClick(View view, int position){
                 switch (position){
 
                     case  0:
