@@ -91,7 +91,7 @@ public class RVRefreshFragment extends Fragment implements CanRefreshLayout.OnRe
         ButterKnife.bind(this, v);
 
 
-        if (type==3){
+        if (type == 3) {
 
             StoreHouseRefreshView storeHouseRefreshView = (StoreHouseRefreshView) v.findViewById(R.id.can_refresh_header);
 
@@ -112,9 +112,6 @@ public class RVRefreshFragment extends Fragment implements CanRefreshLayout.OnRe
 
 
         refresh.setStyle(type, type);
-
-
-
 
 
         recyclerView.setLayoutManager(mLayoutManager);
@@ -169,7 +166,6 @@ public class RVRefreshFragment extends Fragment implements CanRefreshLayout.OnRe
 
 
     }
-
 
 
     @Override

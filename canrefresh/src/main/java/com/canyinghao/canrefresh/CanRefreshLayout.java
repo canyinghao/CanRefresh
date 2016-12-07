@@ -11,6 +11,7 @@ import android.support.v4.view.NestedScrollingChild;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AbsListView;
@@ -76,6 +77,8 @@ public class CanRefreshLayout extends FrameLayout {
 
     protected AppBarLayout mAppBar;
 
+    //   最大拉动高度 为0表示不限制
+    protected int mMaxHeight;
     //    头部高度
     protected int mHeaderHeight;
     //    底部高度
@@ -308,6 +311,16 @@ public class CanRefreshLayout extends FrameLayout {
      */
     public void setOnLoadMoreListener(@NonNull OnLoadMoreListener mOnLoadMoreListener) {
         this.mOnLoadMoreListener = mOnLoadMoreListener;
+    }
+
+
+    /**
+     * 设置最大滑动高度
+     *
+     * @param mMaxHeight int
+     */
+    public void setMaxHeight(int mMaxHeight) {
+        this.mMaxHeight = mMaxHeight;
     }
 
 
@@ -851,6 +864,14 @@ public class CanRefreshLayout extends FrameLayout {
                     int scrollNum = -((int) (currentOffSetY * ratio));
 
                     scrollSum += scrollNum;
+
+
+                    if (mMaxHeight > 0 && Math.abs(scrollSum) > mMaxHeight) {
+
+                        scrollSum = scrollSum > 0 ? mMaxHeight : -mMaxHeight;
+
+                        scrollNum = 0;
+                    }
 
 
                     if (isHead) {

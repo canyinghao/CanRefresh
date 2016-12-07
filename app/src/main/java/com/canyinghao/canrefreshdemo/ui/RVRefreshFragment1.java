@@ -93,6 +93,9 @@ public class RVRefreshFragment1 extends Fragment implements CanRefreshLayout.OnR
 
         refresh.setStyle(type, type);
 
+        refresh.setMaxHeight((int) getResources().getDimension(R.dimen.dimen_super_super));
+
+
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL));
 
 
