@@ -1278,9 +1278,17 @@ public class CanRefreshLayout extends FrameLayout {
 
 
         if (mIsCoo) {
+            if (mIsViewPager) {
+                int current = mViewPager.getCurrentItem();
+                if (current < mViewPager.getChildCount()) {
+                    mScrollView = mViewPager.getChildAt(current);
+                }
+            }
 
-
-            return !isDependentOpen;
+            if (mScrollView == null) {
+                return false;
+            }
+            return !isDependentOpen || canScrollUp(mScrollView);
 
         }
         return canScrollUp(mContentView);
