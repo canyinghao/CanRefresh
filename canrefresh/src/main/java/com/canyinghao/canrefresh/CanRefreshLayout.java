@@ -77,8 +77,17 @@ public class CanRefreshLayout extends FrameLayout {
 
     protected AppBarLayout mAppBar;
 
-    //   最大拉动高度 为0表示不限制
-    protected int mMaxHeight;
+    //   最大上拉高度 为0表示不限制
+    protected int mMaxHeaderHeight;
+
+    //   最大下拉高度 为0表示不限制
+    protected int mMaxFooterHeight;
+
+    //   开始下拉
+    protected OnStartUpListener onStartUpListener;
+
+    //   开始上拉
+    protected OnStartDownListener onStartDownListener;
     //    头部高度
     protected int mHeaderHeight;
     //    底部高度
@@ -315,14 +324,42 @@ public class CanRefreshLayout extends FrameLayout {
 
 
     /**
-     * 设置最大滑动高度
+     * 设置最大上拉滑动高度
      *
-     * @param mMaxHeight int
+     * @param mMaxHeaderHeight int
      */
-    public void setMaxHeight(int mMaxHeight) {
-        this.mMaxHeight = mMaxHeight;
+    public void setMaxHeaderHeight(int mMaxHeaderHeight) {
+
+        this.mMaxHeaderHeight = mMaxHeaderHeight;
+
     }
 
+    /**
+     * 设置最大下拉滑动高度
+     *
+     * @param mMaxFooterHeight int
+     */
+    public void setMaxFooterHeight(int mMaxFooterHeight) {
+        this.mMaxFooterHeight = mMaxFooterHeight;
+    }
+
+    /**
+     * 设置开始下拉的监听
+     *
+     * @param onStartUpListener OnStartUpListener
+     */
+    public void setOnStartUpListener(OnStartUpListener onStartUpListener) {
+        this.onStartUpListener = onStartUpListener;
+    }
+
+    /**
+     * 设置开始上拉的监听
+     *
+     * @param onStartDownListener OnStartDownListener
+     */
+    public void setOnStartDownListener(OnStartDownListener onStartDownListener) {
+        this.onStartDownListener = onStartDownListener;
+    }
 
     /**
      * 设置摩擦系数
@@ -866,16 +903,36 @@ public class CanRefreshLayout extends FrameLayout {
                     scrollSum += scrollNum;
 
 
-                    if (mMaxHeight > 0 && Math.abs(scrollSum) > mMaxHeight) {
+                    if (isHead) {
 
-                        scrollSum = scrollSum > 0 ? mMaxHeight : -mMaxHeight;
+                        if (mMaxHeaderHeight > 0 && Math.abs(scrollSum) > mMaxHeaderHeight) {
 
-                        scrollNum = 0;
+                            scrollSum = scrollSum > 0 ? mMaxHeaderHeight : -mMaxHeaderHeight;
+
+                            scrollNum = 0;
+                        }
+
+                    } else {
+
+                        if (mMaxFooterHeight > 0 && Math.abs(scrollSum) > mMaxFooterHeight) {
+
+                            scrollSum = scrollSum > 0 ? mMaxFooterHeight : -mMaxFooterHeight;
+
+                            scrollNum = 0;
+                        }
                     }
 
 
                     if (isHead) {
                         setBackgroundResource(mRefreshBackgroundResource);
+
+
+                        if (onStartUpListener != null && Math.abs(scrollSum) > 0) {
+
+                            onStartUpListener.onUp();
+                        }
+
+
                         smoothMove(true, true, scrollNum, scrollSum);
 
 
@@ -887,6 +944,13 @@ public class CanRefreshLayout extends FrameLayout {
                         getHeaderInterface().onPositionChange(Math.abs(scrollSum) / (float) mHeaderHeight);
                     } else {
                         setBackgroundResource(mLoadMoreBackgroundResource);
+
+                        if (onStartDownListener != null && Math.abs(scrollSum) > 0) {
+
+                            onStartDownListener.onDown();
+                        }
+
+
                         smoothMove(false, true, scrollNum, scrollSum);
 
 
@@ -921,8 +985,11 @@ public class CanRefreshLayout extends FrameLayout {
 
                         smoothMove(true, false, 0, 0);
 
-
+                        if (onStartUpListener != null) {
+                            onStartUpListener.onReset();
+                        }
                     }
+
 
                 } else {
 
@@ -937,7 +1004,11 @@ public class CanRefreshLayout extends FrameLayout {
 
                         smoothMove(false, false, mFootStyle == CLASSIC ? mContentView.getMeasuredHeight() - getMeasuredHeight() : 0, 0);
 
+                        if (onStartDownListener != null) {
+                            onStartDownListener.onReset();
+                        }
                     }
+
 
                 }
 
@@ -1199,6 +1270,9 @@ public class CanRefreshLayout extends FrameLayout {
                 isHeaderRefreshing = false;
                 getHeaderInterface().onComplete();
                 getHeaderInterface().onReset();
+                if (onStartUpListener != null) {
+                    onStartUpListener.onReset();
+                }
 
             }
         }, mDuration);
@@ -1221,6 +1295,9 @@ public class CanRefreshLayout extends FrameLayout {
                 isFooterRefreshing = false;
                 getFooterInterface().onComplete();
                 getFooterInterface().onReset();
+                if (onStartDownListener != null) {
+                    onStartDownListener.onReset();
+                }
 
             }
         }, mDuration);
@@ -1376,12 +1453,40 @@ public class CanRefreshLayout extends FrameLayout {
         }
     }
 
+    /**
+     * 上拉加载监听
+     */
     public interface OnLoadMoreListener {
         void onLoadMore();
     }
 
+    /**
+     * 下拉刷新监听
+     */
     public interface OnRefreshListener {
         void onRefresh();
+    }
+
+    /**
+     * 开始下拉监听
+     */
+    public interface OnStartUpListener {
+
+        void onUp();
+
+        void onReset();
+
+    }
+
+    /**
+     * 开始上拉监听
+     */
+    public interface OnStartDownListener {
+
+        void onDown();
+
+        void onReset();
+
     }
 
 

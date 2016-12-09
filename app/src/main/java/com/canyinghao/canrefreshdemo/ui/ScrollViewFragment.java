@@ -31,7 +31,7 @@ public class ScrollViewFragment extends Fragment implements CanRefreshLayout.OnR
         refresh.setOnRefreshListener(this);
 
 
-        refresh.setMaxHeight(300);
+        refresh.setMaxFooterHeight(300);
 
 
 //        refresh.setLoadMoreEnabled(false);

@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.text.method.KeyListener;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,8 +95,20 @@ public class RVRefreshFragment1 extends Fragment implements CanRefreshLayout.OnR
 
         refresh.setStyle(type, type);
 
-        refresh.setMaxHeight((int) getResources().getDimension(R.dimen.dimen_super_super));
+        refresh.setMaxHeaderHeight((int) getResources().getDimension(R.dimen.dimen_super_super));
 
+        refresh.setOnStartUpListener(new CanRefreshLayout.OnStartUpListener() {
+            @Override
+            public void onUp() {
+
+                Log.e("Canyinghao", "onUp");
+            }
+
+            @Override
+            public void onReset() {
+                Log.e("Canyinghao", "onReset");
+            }
+        });
 
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL));
 
@@ -119,7 +133,6 @@ public class RVRefreshFragment1 extends Fragment implements CanRefreshLayout.OnR
 
             @Override
             protected void setItemListener(CanHolderHelper helper) {
-
 
 
             }
@@ -156,8 +169,6 @@ public class RVRefreshFragment1 extends Fragment implements CanRefreshLayout.OnR
         App.getInstance().show("click head");
 
     }
-
-
 
 
     @Override

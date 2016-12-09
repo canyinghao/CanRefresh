@@ -110,7 +110,7 @@ public class RVRefreshFragment extends Fragment implements CanRefreshLayout.OnRe
         refresh.setOnLoadMoreListener(this);
         refresh.setOnRefreshListener(this);
 
-
+        refresh.setMaxFooterHeight(300);
         refresh.setStyle(type, type);
 
 
