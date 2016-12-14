@@ -34,7 +34,7 @@
             android:layout_marginLeft="@dimen/dimen_normal"
             android:layout_marginRight="@dimen/dimen_normal"
             android:layout_marginTop="@dimen/dimen_normal"
-            android:text="《知音漫客》改版周刊以后，分别以“锐、幻、萌、燃”为四刊基调，“锐”像是突然有了光，象征原创漫画在日漫统治大局下的突破，突出青春与梦追求过程中不可缺少的锐气，以及适合90后00后灵感与思想的闪现；“幻”凝聚了无限奇思妙想，象征青春成长中无可匹敌的想象力；“萌”兼收并蓄，在吸收日本萌文化的同时，强化爱的感觉和健康快乐的生活氛围；“燃”重头打造少年的梦想与青春张力，突出“热血”、“友情”、“努力”、“胜利”等漫画永恒的主题元素，象征中国动漫产业熊熊燃烧之势。漫客总结出这四种动漫特色，使之成为有共通点却又独立的文化个体，并结合中国传统文化精神，不断完善中国式动漫文化。"
+            android:text="方法，我已开始是在onPageSelected方法中通过viewpager.getChildAt(arg0)方式，想获取当前显示的view。不过这样，超过3个view以后就会报空指针错误，获取的view就会为空，跟踪发现arg0大于2以后就获取view为空。所以我猜测viewpager里面最多有3个view，超过三个的时候就把旧的回收了。那么当前显示的，除了第一个和最后一个，那么都应该是中间的那个，也就是arg0为1的那个。于是我判断，除了第一个和最后一个，其它的arg0都等于1，发现不报错了"
             android:textColor="@color/black2"
             android:textSize="@dimen/text_small_little" />
 
@@ -79,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:drawablePadding="@dimen/dimen_small"
 
-                    android:text="天蚕土豆 任翔"
+                    android:text="土豆"
                     android:textColor="@color/black2"
 
                     android:textSize="@dimen/text_small" />
@@ -87,7 +87,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="粉丝 11m "
+                    android:text="粉丝"
                     android:textColor="@color/black3"
                     android:textSize="@dimen/text_little_super" />
 
@@ -169,7 +169,7 @@
             android:layout_marginLeft="@dimen/dimen_normal"
             android:layout_marginRight="@dimen/dimen_normal"
             android:layout_marginTop="@dimen/dimen_normal"
-            android:text="《知音漫客》改版周刊以后，分别以“锐、幻、萌、燃”为四刊基调，“锐”像是突然有了光，象征原创漫画在日漫统治大局下的突破，突出青春与梦追求过程中不可缺少的锐气，以及适合90后00后灵感与思想的闪现；“幻”凝聚了无限奇思妙想，象征青春成长中无可匹敌的想象力；“萌”兼收并蓄，在吸收日本萌文化的同时，强化爱的感觉和健康快乐的生活氛围；“燃”重头打造少年的梦想与青春张力，突出“热血”、“友情”、“努力”、“胜利”等漫画永恒的主题元素，象征中国动漫产业熊熊燃烧之势。漫客总结出这四种动漫特色，使之成为有共通点却又独立的文化个体，并结合中国传统文化精神，不断完善中国式动漫文化。"
+            android:text="方法，我已开始是在onPageSelected方法中通过viewpager.getChildAt(arg0)方式，想获取当前显示的view。不过这样，超过3个view以后就会报空指针错误，获取的view就会为空，跟踪发现arg0大于2以后就获取view为空。所以我猜测viewpager里面最多有3个view，超过三个的时候就把旧的回收了。那么当前显示的，除了第一个和最后一个，那么都应该是中间的那个，也就是arg0为1的那个。于是我判断，除了第一个和最后一个，其它的arg0都等于1，发现不报错了"
             android:textColor="@color/black2"
             android:textSize="@dimen/text_small_little" />
 
@@ -180,7 +180,7 @@
             android:layout_marginLeft="@dimen/dimen_normal"
             android:layout_marginRight="@dimen/dimen_normal"
             android:layout_marginTop="@dimen/dimen_normal"
-            android:text="《知音漫客》改版周刊以后，分别以“锐、幻、萌、燃”为四刊基调，“锐”像是突然有了光，象征原创漫画在日漫统治大局下的突破，突出青春与梦追求过程中不可缺少的锐气，以及适合90后00后灵感与思想的闪现；“幻”凝聚了无限奇思妙想，象征青春成长中无可匹敌的想象力；“萌”兼收并蓄，在吸收日本萌文化的同时，强化爱的感觉和健康快乐的生活氛围；“燃”重头打造少年的梦想与青春张力，突出“热血”、“友情”、“努力”、“胜利”等漫画永恒的主题元素，象征中国动漫产业熊熊燃烧之势。漫客总结出这四种动漫特色，使之成为有共通点却又独立的文化个体，并结合中国传统文化精神，不断完善中国式动漫文化。"
+            android:text="方法，我已开始是在onPageSelected方法中通过viewpager.getChildAt(arg0)方式，想获取当前显示的view。不过这样，超过3个view以后就会报空指针错误，获取的view就会为空，跟踪发现arg0大于2以后就获取view为空。所以我猜测viewpager里面最多有3个view，超过三个的时候就把旧的回收了。那么当前显示的，除了第一个和最后一个，那么都应该是中间的那个，也就是arg0为1的那个。于是我判断，除了第一个和最后一个，其它的arg0都等于1，发现不报错了"
             android:textColor="@color/black2"
             android:textSize="@dimen/text_small_little" />
 
@@ -191,7 +191,7 @@
             android:layout_marginLeft="@dimen/dimen_normal"
             android:layout_marginRight="@dimen/dimen_normal"
             android:layout_marginTop="@dimen/dimen_normal"
-            android:text="《知音漫客》改版周刊以后，分别以“锐、幻、萌、燃”为四刊基调，“锐”像是突然有了光，象征原创漫画在日漫统治大局下的突破，突出青春与梦追求过程中不可缺少的锐气，以及适合90后00后灵感与思想的闪现；“幻”凝聚了无限奇思妙想，象征青春成长中无可匹敌的想象力；“萌”兼收并蓄，在吸收日本萌文化的同时，强化爱的感觉和健康快乐的生活氛围；“燃”重头打造少年的梦想与青春张力，突出“热血”、“友情”、“努力”、“胜利”等漫画永恒的主题元素，象征中国动漫产业熊熊燃烧之势。漫客总结出这四种动漫特色，使之成为有共通点却又独立的文化个体，并结合中国传统文化精神，不断完善中国式动漫文化。"
+            android:text="方法，我已开始是在onPageSelected方法中通过viewpager.getChildAt(arg0)方式，想获取当前显示的view。不过这样，超过3个view以后就会报空指针错误，获取的view就会为空，跟踪发现arg0大于2以后就获取view为空。所以我猜测viewpager里面最多有3个view，超过三个的时候就把旧的回收了。那么当前显示的，除了第一个和最后一个，那么都应该是中间的那个，也就是arg0为1的那个。于是我判断，除了第一个和最后一个，其它的arg0都等于1，发现不报错了"
             android:textColor="@color/black2"
             android:textSize="@dimen/text_small_little" />
 

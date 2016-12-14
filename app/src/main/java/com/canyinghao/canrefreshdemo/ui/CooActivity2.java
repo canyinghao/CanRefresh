@@ -81,12 +81,15 @@ public class CooActivity2 extends AppCompatActivity implements CanRefreshLayout.
 
 
         adapter.addFragment(TestFragment.newInstance(), strs[0]);
-        adapter.addFragment(TestFragment.newInstance(), strs[1]);
+        adapter.addFragment(TestFragment1.newInstance(), strs[1]);
         adapter.addFragment(TestFragment.newInstance(), strs[2]);
 
 
         viewPager.setAdapter(adapter);
         viewPager.setOffscreenPageLimit(3);
+
+
+        viewPager.setCurrentItem(1);
 
 
     }

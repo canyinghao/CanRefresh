@@ -7,9 +7,14 @@ import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.NestedScrollingChild;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.NestedScrollView;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -1379,14 +1384,36 @@ public class CanRefreshLayout extends FrameLayout {
             if (mIsViewPager) {
                 int current = mViewPager.getCurrentItem();
                 if (current < mViewPager.getChildCount()) {
-                    mScrollView = mViewPager.getChildAt(current);
+
+                    PagerAdapter adapter = mViewPager.getAdapter();
+
+                    if (adapter instanceof FragmentPagerAdapter) {
+
+                        FragmentPagerAdapter fragmentPagerAdapter = (FragmentPagerAdapter) adapter;
+
+                        Fragment fragment = fragmentPagerAdapter.getItem(current);
+
+                        if (fragment != null) {
+                            mScrollView = fragment.getView();
+                        }
+
+
+                    } else {
+
+                        mScrollView = mViewPager.getChildAt(current);
+                    }
+
+
                 }
             }
+
 
             if (mScrollView == null) {
                 return false;
             }
+
             return !isDependentOpen || canScrollUp(mScrollView);
+
 
         }
         return canScrollUp(mContentView);
@@ -1421,7 +1448,25 @@ public class CanRefreshLayout extends FrameLayout {
             if (mIsViewPager) {
                 int current = mViewPager.getCurrentItem();
                 if (current < mViewPager.getChildCount()) {
-                    mScrollView = mViewPager.getChildAt(current);
+
+                    PagerAdapter adapter = mViewPager.getAdapter();
+
+                    if (adapter instanceof FragmentPagerAdapter) {
+
+                        FragmentPagerAdapter fragmentPagerAdapter = (FragmentPagerAdapter) adapter;
+
+                        Fragment fragment = fragmentPagerAdapter.getItem(current);
+
+                        if (fragment != null) {
+                            mScrollView = fragment.getView();
+                        }
+
+                    } else {
+
+                        mScrollView = mViewPager.getChildAt(current);
+                    }
+
+
                 }
             }
 
