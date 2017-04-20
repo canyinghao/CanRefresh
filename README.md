@@ -4,7 +4,7 @@
  
  ![](./pic/CanRefresh.gif)  
 
-##添加依赖
+## 添加依赖
 ```JAVA
 compile 'com.canyinghao:canrefresh:1.1.1'
 ```
