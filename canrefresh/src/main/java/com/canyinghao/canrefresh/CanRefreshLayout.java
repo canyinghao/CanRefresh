@@ -13,10 +13,7 @@ import android.support.v4.view.NestedScrollingChild;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.NestedScrollView;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AbsListView;
@@ -104,6 +101,10 @@ public class CanRefreshLayout extends FrameLayout {
     private boolean isHeaderRefreshing;
     private boolean isFooterRefreshing;
 
+
+    private float mMidContentPara = 2.0f;
+    private float mMidHeaderPara = 2.0f;
+    private float mRefreshRatio = 1.0f;
 
     //    摩擦系数
     private float mFriction = DEFAULT_FRICTION;
@@ -980,10 +981,13 @@ public class CanRefreshLayout extends FrameLayout {
 
 
                 if (isHead) {
-                    if (Math.abs(scrollSum) > mHeaderHeight) {
+
+                    int h = (int) (mHeaderHeight*mRefreshRatio);
+                    if (Math.abs(scrollSum) > h) {
 
 
-                        smoothMove(true, false, mHeadStyle == CLASSIC ? -mHeaderHeight : mHeaderHeight, mHeaderHeight);
+                       smoothMove(true, false, mHeadStyle == CLASSIC ? -h : h, h);
+
                         getHeaderInterface().onRelease();
                         refreshing();
                     } else {
@@ -997,12 +1001,10 @@ public class CanRefreshLayout extends FrameLayout {
 
 
                 } else {
+                    int h = (int) (mFooterHeight*mRefreshRatio);
+                    if (Math.abs(scrollSum) > h) {
 
-                    if (Math.abs(scrollSum) > mFooterHeight) {
-
-
-                        smoothMove(false, false, mFootStyle == CLASSIC ? mContentView.getMeasuredHeight() - getMeasuredHeight() + mFooterHeight : mFooterHeight, mFooterHeight);
-
+                          smoothMove(false, false, mFootStyle == CLASSIC ? mContentView.getMeasuredHeight() - getMeasuredHeight() + h : h, h);
                         getFooterInterface().onRelease();
                         loadingMore();
                     } else {
@@ -1136,6 +1138,49 @@ public class CanRefreshLayout extends FrameLayout {
 
     }
 
+    public void setMidContentPara(float mMidContentPara) {
+        this.mMidContentPara = mMidContentPara;
+    }
+
+    public void setMidHeaderPara(float mMidHeaderPara) {
+        this.mMidHeaderPara = mMidHeaderPara;
+    }
+
+    public void setRefreshRatio(float mRefreshRatio) {
+        this.mRefreshRatio = mRefreshRatio;
+    }
+
+    /**
+     * 初始化header位置
+     */
+    public void initHeaderLayout(){
+
+         int moveY = 0;
+        if (mHeadStyle == UPPER) {
+
+
+            mHeadOffY = moveY;
+
+
+        } else if (mHeadStyle == LOWER) {
+
+
+            mHeadOffY = mHeaderHeight;
+            mContentOffY = moveY;
+
+
+        } else if (mHeadStyle == MID) {
+
+
+            mHeadOffY = (int) (moveY / mMidContentPara + mHeaderHeight / mMidHeaderPara);
+
+
+            mContentOffY = moveY;
+
+
+        }
+        requestLayout();
+    }
 
     /**
      * 通过设置偏移滚动到目标位置
@@ -1168,7 +1213,7 @@ public class CanRefreshLayout extends FrameLayout {
                 } else if (mHeadStyle == MID) {
 
 
-                    mHeadOffY = moveY / 2 + mHeaderHeight / 2;
+                    mHeadOffY = (int)(moveY / mMidContentPara + mHeaderHeight / mMidHeaderPara);
 
 
                     mContentOffY = moveY;
@@ -1194,7 +1239,7 @@ public class CanRefreshLayout extends FrameLayout {
                 } else if (mFootStyle == MID) {
 
 
-                    mFootOffY = moveY / 2 + mFooterHeight / 2;
+                    mFootOffY =  (int)(moveY / mMidContentPara + mFooterHeight / mMidHeaderPara);
 
                     mContentOffY = -moveY;
 
@@ -1271,7 +1316,7 @@ public class CanRefreshLayout extends FrameLayout {
         postDelayed(new Runnable() {
             @Override
             public void run() {
-                smoothMove(true, false, mHeadStyle == CLASSIC ? 0 : mHeaderHeight, 0);
+                smoothMove(true, false, mHeadStyle == CLASSIC ? 0 : (int) (mHeaderHeight * mRefreshRatio), 0);
                 isHeaderRefreshing = false;
                 getHeaderInterface().onComplete();
                 getHeaderInterface().onReset();
@@ -1295,7 +1340,7 @@ public class CanRefreshLayout extends FrameLayout {
         postDelayed(new Runnable() {
             @Override
             public void run() {
-                smoothMove(false, false, mFootStyle == CLASSIC ? mContentView.getMeasuredHeight() - getMeasuredHeight() : mFooterHeight, 0);
+                smoothMove(false, false, mFootStyle == CLASSIC ? mContentView.getMeasuredHeight() - getMeasuredHeight() : (int) (mFooterHeight * mRefreshRatio), 0);
 
                 isFooterRefreshing = false;
                 getFooterInterface().onComplete();
