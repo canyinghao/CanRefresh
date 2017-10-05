@@ -79,6 +79,11 @@ public class YalantisPhoenixRefreshView extends FrameLayout implements CanRefres
     }
 
     @Override
+    public void onReleaseNoEnough(float currentPercent) {
+
+    }
+
+    @Override
     public void onComplete() {
 
 

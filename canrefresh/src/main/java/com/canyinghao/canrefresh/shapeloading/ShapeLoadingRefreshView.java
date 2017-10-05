@@ -246,6 +246,11 @@ public class ShapeLoadingRefreshView extends FrameLayout implements CanRefresh {
     }
 
     @Override
+    public void onReleaseNoEnough(float currentPercent) {
+
+    }
+
+    @Override
     public void onComplete() {
 
         stopAnimation();

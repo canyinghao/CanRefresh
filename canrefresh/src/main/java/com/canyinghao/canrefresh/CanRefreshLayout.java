@@ -982,32 +982,41 @@ public class CanRefreshLayout extends FrameLayout {
 
                 if (isHead) {
 
-                    int h = (int) (mHeaderHeight*mRefreshRatio);
+                    int h = (int) (mHeaderHeight * mRefreshRatio);
                     if (Math.abs(scrollSum) > h) {
 
 
-                       smoothMove(true, false, mHeadStyle == CLASSIC ? -h : h, h);
+                        smoothMove(true, false, mHeadStyle == CLASSIC ? -h : h, h);
 
                         getHeaderInterface().onRelease();
+
                         refreshing();
                     } else {
+
+                        getHeaderInterface().onReleaseNoEnough(Math.abs(scrollSum) / (float) mHeaderHeight);
 
                         smoothMove(true, false, 0, 0);
 
                         if (onStartUpListener != null) {
                             onStartUpListener.onReset();
                         }
+
                     }
 
 
                 } else {
-                    int h = (int) (mFooterHeight*mRefreshRatio);
+                    int h = (int) (mFooterHeight * mRefreshRatio);
                     if (Math.abs(scrollSum) > h) {
 
-                          smoothMove(false, false, mFootStyle == CLASSIC ? mContentView.getMeasuredHeight() - getMeasuredHeight() + h : h, h);
+                        smoothMove(false, false, mFootStyle == CLASSIC ? mContentView.getMeasuredHeight() - getMeasuredHeight() + h : h, h);
+
                         getFooterInterface().onRelease();
+
                         loadingMore();
+
                     } else {
+
+                        getFooterInterface().onReleaseNoEnough(Math.abs(scrollSum) / (float) mFooterHeight);
 
                         smoothMove(false, false, mFootStyle == CLASSIC ? mContentView.getMeasuredHeight() - getMeasuredHeight() : 0, 0);
 
@@ -1153,9 +1162,9 @@ public class CanRefreshLayout extends FrameLayout {
     /**
      * 初始化header位置
      */
-    public void initHeaderLayout(){
+    public void initHeaderLayout() {
 
-         int moveY = 0;
+        int moveY = 0;
         if (mHeadStyle == UPPER) {
 
 
@@ -1213,7 +1222,7 @@ public class CanRefreshLayout extends FrameLayout {
                 } else if (mHeadStyle == MID) {
 
 
-                    mHeadOffY = (int)(moveY / mMidContentPara + mHeaderHeight / mMidHeaderPara);
+                    mHeadOffY = (int) (moveY / mMidContentPara + mHeaderHeight / mMidHeaderPara);
 
 
                     mContentOffY = moveY;
@@ -1239,7 +1248,7 @@ public class CanRefreshLayout extends FrameLayout {
                 } else if (mFootStyle == MID) {
 
 
-                    mFootOffY =  (int)(moveY / mMidContentPara + mFooterHeight / mMidHeaderPara);
+                    mFootOffY = (int) (moveY / mMidContentPara + mFooterHeight / mMidHeaderPara);
 
                     mContentOffY = -moveY;
 

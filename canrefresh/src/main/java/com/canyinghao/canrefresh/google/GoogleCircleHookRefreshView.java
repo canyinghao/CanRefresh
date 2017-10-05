@@ -77,6 +77,11 @@ public class GoogleCircleHookRefreshView extends FrameLayout implements CanRefre
     }
 
     @Override
+    public void onReleaseNoEnough(float currentPercent) {
+
+    }
+
+    @Override
     public void onComplete() {
         progressView.stop();
     }

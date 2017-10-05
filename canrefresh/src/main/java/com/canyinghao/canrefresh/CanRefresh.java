@@ -35,6 +35,11 @@ public interface CanRefresh {
     public void onRelease();
 
     /**
+     * 不足时放手后
+     */
+    public void onReleaseNoEnough(float currentPercent);
+
+    /**
      * 刷新完成
      */
     public void onComplete();

@@ -135,6 +135,11 @@ public class ClassicRefreshView extends FrameLayout implements CanRefresh {
     }
 
     @Override
+    public void onReleaseNoEnough(float currentPercent) {
+
+    }
+
+    @Override
     public void onPositionChange(float currentPercent) {
 
 

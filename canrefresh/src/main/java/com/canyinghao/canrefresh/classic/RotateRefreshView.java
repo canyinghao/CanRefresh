@@ -105,6 +105,11 @@ public class RotateRefreshView extends FrameLayout implements CanRefresh {
     }
 
     @Override
+    public void onReleaseNoEnough(float currentPercent) {
+
+    }
+
+    @Override
     public void onComplete() {
         
     }

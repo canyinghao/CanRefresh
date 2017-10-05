@@ -6,7 +6,7 @@
 
 ## 添加依赖
 ```
-compile 'com.canyinghao:canrefresh:1.1.1'
+compile 'com.canyinghao:canrefresh:1.1.5'
 ```
 
 ## 使用方式 

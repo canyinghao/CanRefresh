@@ -268,6 +268,11 @@ public class StoreHouseRefreshView extends View implements CanRefresh {
     }
 
     @Override
+    public void onReleaseNoEnough(float currentPercent) {
+
+    }
+
+    @Override
     public void onComplete() {
         loadFinish();
     }
