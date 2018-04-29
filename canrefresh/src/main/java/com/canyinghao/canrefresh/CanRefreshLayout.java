@@ -153,8 +153,10 @@ public class CanRefreshLayout extends FrameLayout {
     private int tempY;
     //   下拉时背景
     private int mRefreshBackgroundResource;
+    private int mRefreshBackgroundColor;
     //    上拉时背景
     private int mLoadMoreBackgroundResource;
+    private int mLoadMoreBackgroundColor;
     //  内容视图是否是CoordinatorLayout
     private boolean mIsCoo;
     //  是否展开  mIsCoo=true时有效
@@ -261,12 +263,30 @@ public class CanRefreshLayout extends FrameLayout {
     }
 
     /**
+     * 设置下拉刷新时背景颜色
+     *
+     * @param mRefreshBackgroundColor int
+     */
+    public void setRefreshBackgroundColor(int mRefreshBackgroundColor) {
+        this.mRefreshBackgroundColor = mRefreshBackgroundColor;
+    }
+
+    /**
      * 设置加载更多时背景
      *
      * @param mLoadMoreBackgroundResource int
      */
     public void setLoadMoreBackgroundResource(int mLoadMoreBackgroundResource) {
         this.mLoadMoreBackgroundResource = mLoadMoreBackgroundResource;
+    }
+
+    /**
+     * 设置加载更多时背景颜色
+     *
+     * @param mLoadMoreBackgroundColor int
+     */
+    public void setLoadMoreBackgroundColor(int mLoadMoreBackgroundColor) {
+        this.mLoadMoreBackgroundColor = mLoadMoreBackgroundColor;
     }
 
     /**
@@ -930,7 +950,7 @@ public class CanRefreshLayout extends FrameLayout {
 
 
                     if (isHead) {
-                        setBackgroundResource(mRefreshBackgroundResource);
+                        setBackgroundResource(mRefreshBackgroundResource, true);
 
 
                         if (onStartUpListener != null && Math.abs(scrollSum) > 0) {
@@ -949,7 +969,7 @@ public class CanRefreshLayout extends FrameLayout {
 
                         getHeaderInterface().onPositionChange(Math.abs(scrollSum) / (float) mHeaderHeight);
                     } else {
-                        setBackgroundResource(mLoadMoreBackgroundResource);
+                        setBackgroundResource(mLoadMoreBackgroundResource, false);
 
                         if (onStartDownListener != null && Math.abs(scrollSum) > 0) {
 
@@ -1372,7 +1392,7 @@ public class CanRefreshLayout extends FrameLayout {
             postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    setBackgroundResource(mRefreshBackgroundResource);
+                    setBackgroundResource(mRefreshBackgroundResource, true);
                     smoothMove(true, false, -mHeaderHeight, -mHeaderHeight);
                     getHeaderInterface().onRelease();
                     refreshing();
@@ -1385,6 +1405,22 @@ public class CanRefreshLayout extends FrameLayout {
 
     }
 
+
+    public void setBackgroundResource(int resid, boolean isRefresh) {
+        if (isRefresh) {
+            if (mRefreshBackgroundColor != 0) {
+                setBackgroundColor(mRefreshBackgroundColor);
+            } else {
+                setBackgroundResource(mRefreshBackgroundResource);
+            }
+        } else {
+            if (mLoadMoreBackgroundColor != 0) {
+                setBackgroundColor(mLoadMoreBackgroundColor);
+            } else {
+                setBackgroundResource(mLoadMoreBackgroundResource);
+            }
+        }
+    }
 
     private void refreshing() {
         isHeaderRefreshing = true;
@@ -1449,6 +1485,14 @@ public class CanRefreshLayout extends FrameLayout {
 
                         if (fragment != null) {
                             mScrollView = fragment.getView();
+                            if (mScrollView != null) {
+                                try {
+                                    mScrollView = mScrollView.findViewWithTag("CanScrollView");
+                                } catch (Throwable e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
                         }
 
 
