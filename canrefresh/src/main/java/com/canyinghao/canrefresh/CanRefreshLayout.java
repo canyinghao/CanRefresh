@@ -105,6 +105,8 @@ public class CanRefreshLayout extends FrameLayout {
     private float mMidContentPara = 2.0f;
     private float mMidHeaderPara = 2.0f;
     private float mRefreshRatio = 1.0f;
+    //   滑动到多少时松手显示全部
+    private float mRefreshUpRatio = 0f;
 
     //    摩擦系数
     private float mFriction = DEFAULT_FRICTION;
@@ -1002,8 +1004,18 @@ public class CanRefreshLayout extends FrameLayout {
 
                 if (isHead) {
 
+
                     int h = (int) (mHeaderHeight * mRefreshRatio);
-                    if (Math.abs(scrollSum) > h) {
+                    int upH = (int) (mHeaderHeight * mRefreshUpRatio);
+
+                    if (upH > 0 && Math.abs(scrollSum) > upH) {
+                        smoothMove(true, false, mHeadStyle == CLASSIC ? -mHeaderHeight : mHeaderHeight, mHeaderHeight);
+
+                        getHeaderInterface().onRelease();
+
+                        refreshing();
+
+                    } else if (Math.abs(scrollSum) > h) {
 
 
                         smoothMove(true, false, mHeadStyle == CLASSIC ? -h : h, h);
@@ -1175,8 +1187,12 @@ public class CanRefreshLayout extends FrameLayout {
         this.mMidHeaderPara = mMidHeaderPara;
     }
 
-    public void setRefreshRatio(float mRefreshRatio) {
-        this.mRefreshRatio = mRefreshRatio;
+    public void setRefreshRatio(float refreshRatio) {
+        this.mRefreshRatio = refreshRatio;
+    }
+
+    public void setRefreshUpRatio(float refreshUpRatio) {
+        this.mRefreshUpRatio = refreshUpRatio;
     }
 
     /**
