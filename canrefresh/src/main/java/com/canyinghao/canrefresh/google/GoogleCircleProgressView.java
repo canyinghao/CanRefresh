@@ -12,12 +12,14 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.net.Uri;
-import android.support.annotation.ColorRes;
-import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.animation.Animation;
 import android.widget.ImageView;
+
 import com.canyinghao.canrefresh.R;
+
+import androidx.annotation.ColorRes;
+import androidx.core.view.ViewCompat;
 
 
 /**

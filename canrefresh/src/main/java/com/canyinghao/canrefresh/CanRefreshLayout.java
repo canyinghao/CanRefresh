@@ -2,17 +2,6 @@ package com.canyinghao.canrefresh;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.annotation.FloatRange;
-import android.support.annotation.IntRange;
-import android.support.annotation.NonNull;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.NestedScrollingChild;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -20,8 +9,21 @@ import android.widget.AbsListView;
 import android.widget.FrameLayout;
 import android.widget.Scroller;
 
+import com.google.android.material.appbar.AppBarLayout;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.FloatRange;
+import androidx.annotation.IntRange;
+import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.view.NestedScrollingChild;
+import androidx.core.view.ViewCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Copyright 2016 canyinghao

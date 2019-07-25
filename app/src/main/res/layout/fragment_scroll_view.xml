@@ -14,7 +14,7 @@
     >
 
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@id/can_content_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -41,7 +41,7 @@
         </LinearLayout>
 
 
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <com.canyinghao.canrefresh.classic.ClassicRefreshView
         android:id="@id/can_refresh_header"

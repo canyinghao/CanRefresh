@@ -1,11 +1,6 @@
 package com.canyinghao.canrefreshdemo.ui;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +14,11 @@ import com.canyinghao.canrefreshdemo.App;
 import com.canyinghao.canrefreshdemo.R;
 import com.canyinghao.canrefreshdemo.model.MainBean;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 /**
@@ -31,9 +29,9 @@ public class RVRefreshFragment extends Fragment implements CanRefreshLayout.OnRe
 
     public final static String TYPE = "type";
 
-    @BindView(R.id.can_content_view)
+
     RecyclerView recyclerView;
-    @BindView(R.id.refresh)
+
     CanRefreshLayout refresh;
     CanRVAdapter adapter;
 
@@ -88,7 +86,8 @@ public class RVRefreshFragment extends Fragment implements CanRefreshLayout.OnRe
 
 
         View v = inflater.inflate(layoutId, container, false);
-        ButterKnife.bind(this, v);
+        recyclerView =  v.findViewById(R.id.can_content_view);
+        refresh =  v.findViewById(R.id.refresh);
 
 
         if (type == 3) {

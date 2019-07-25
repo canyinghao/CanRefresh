@@ -2,12 +2,7 @@ package com.canyinghao.canrefreshdemo.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.canyinghao.canadapter.CanHolderHelper;
 import com.canyinghao.canadapter.CanOnItemListener;
@@ -15,8 +10,11 @@ import com.canyinghao.canadapter.CanRVAdapter;
 import com.canyinghao.canrefreshdemo.R;
 import com.canyinghao.canrefreshdemo.model.MainBean;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 /**
  * Created by canyinghao on 16/1/24.
@@ -24,12 +22,12 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
 
 
-    @BindView(R.id.toolbar)
+
     Toolbar toolbar;
 
-    @BindView(R.id.viewPager)
+
     RecyclerView viewPager;
-    @BindView(R.id.cd)
+
     View cd;
 
     @Override
@@ -39,7 +37,9 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        ButterKnife.bind(this);
+        toolbar =  findViewById(R.id.toolbar);
+        viewPager =  findViewById(R.id.viewPager);
+        cd =  findViewById(R.id.cd);
 
         toolbar.setTitle("CanRefreshDemo");
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);

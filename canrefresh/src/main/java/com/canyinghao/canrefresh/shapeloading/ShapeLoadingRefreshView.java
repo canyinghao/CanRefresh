@@ -2,7 +2,6 @@ package com.canyinghao.canrefresh.shapeloading;
 
 
 import android.content.Context;
-import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -18,6 +17,8 @@ import com.canyinghao.canrefresh.R;
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.AnimatorSet;
 import com.nineoldandroids.animation.ObjectAnimator;
+
+import androidx.core.view.ViewCompat;
 
 /**
  * Created by canyinghao on 16/6/29.

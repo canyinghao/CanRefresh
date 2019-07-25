@@ -1,7 +1,7 @@
 package com.canyinghao.canrefreshdemo.ui;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +15,7 @@ import com.canyinghao.canrefreshdemo.App;
 import com.canyinghao.canrefreshdemo.R;
 import com.canyinghao.canrefreshdemo.model.MainBean;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.fragment.app.Fragment;
 
 
 /**
@@ -24,19 +23,21 @@ import butterknife.ButterKnife;
  */
 public class ListViewFragment extends Fragment implements CanRefreshLayout.OnRefreshListener,CanRefreshLayout.OnLoadMoreListener {
 
-    @BindView(R.id.can_content_view)
+
     ListView listView;
-    @BindView(R.id.refresh)
+
     CanRefreshLayout refresh;
 
     CanAdapter adapter;
 
 
+    @SuppressLint("WrongViewCast")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_listview, container, false);
-        ButterKnife.bind(this, v);
+        listView = v.findViewById(R.id.can_content_view);
+        refresh = v.findViewById(R.id.refresh);
 
         initView();
         return v;

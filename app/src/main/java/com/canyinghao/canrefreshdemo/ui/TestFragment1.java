@@ -1,18 +1,14 @@
 package com.canyinghao.canrefreshdemo.ui;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.canyinghao.canadapter.CanHolderHelper;
 import com.canyinghao.canadapter.CanRVAdapter;
 import com.canyinghao.canrecyclerview.RecyclerViewEmpty;
 import com.canyinghao.canrefreshdemo.R;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 
 /**
  * Created by canyinghao on 2016/12/6.
@@ -21,7 +17,7 @@ import butterknife.ButterKnife;
 public class TestFragment1 extends BaseFragment {
 
 
-    @BindView(R.id.recycler)
+
     RecyclerViewEmpty recycler;
 
     public static TestFragment1 newInstance() {
@@ -35,7 +31,7 @@ public class TestFragment1 extends BaseFragment {
     public void initView(Bundle savedInstanceState) {
 
         setContentView(R.layout.fragment_test1);
-        ButterKnife.bind(this, rootView);
+        recycler =  rootView.findViewById(R.id.recycler);
 
         recycler.setLayoutManager(new LinearLayoutManager(context));
 
