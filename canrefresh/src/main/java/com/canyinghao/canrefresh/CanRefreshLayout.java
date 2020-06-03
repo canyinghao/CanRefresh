@@ -1489,7 +1489,7 @@ public class CanRefreshLayout extends FrameLayout {
         if (mIsCoo) {
             if (mIsViewPager) {
                 int current = mViewPager.getCurrentItem();
-                if (current < mViewPager.getChildCount()) {
+                if (mViewPager.getAdapter() != null && current < mViewPager.getAdapter().getCount()) {
 
                     PagerAdapter adapter = mViewPager.getAdapter();
 
