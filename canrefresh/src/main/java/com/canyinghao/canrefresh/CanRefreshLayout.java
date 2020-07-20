@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.FrameLayout;
 import android.widget.Scroller;
 
@@ -19,11 +18,13 @@ import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.NestedScrollingChild;
-import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
 /**
  * Copyright 2016 canyinghao
@@ -75,6 +76,7 @@ public class CanRefreshLayout extends FrameLayout {
     protected View mScrollView;
 
     protected ViewPager mViewPager;
+    protected ViewPager2 mViewPager2;
 
     // 0 mScrollView是NestedScrollingChild  1 是viewpager
     protected boolean mIsViewPager;
@@ -541,7 +543,10 @@ public class CanRefreshLayout extends FrameLayout {
                 mViewPager = (ViewPager) mScrollView;
                 mIsViewPager = true;
 
-            } else if (mScrollView instanceof NestedScrollingChild) {
+            }else if(mScrollView instanceof ViewPager2) {
+                mViewPager2 = (ViewPager2) mScrollView;
+                mIsViewPager = true;
+            }else if (mScrollView instanceof NestedScrollingChild) {
 
                 mIsViewPager = false;
 
@@ -1490,37 +1495,72 @@ public class CanRefreshLayout extends FrameLayout {
 
         if (mIsCoo) {
             if (mIsViewPager) {
-                int current = mViewPager.getCurrentItem();
-                if (current < mViewPager.getChildCount()) {
+                if(mViewPager!=null){
+                    int current = mViewPager.getCurrentItem();
+                    if (mViewPager.getAdapter() != null && current < mViewPager.getAdapter().getCount()) {
 
-                    PagerAdapter adapter = mViewPager.getAdapter();
+                        PagerAdapter adapter = mViewPager.getAdapter();
 
-                    if (adapter instanceof FragmentPagerAdapter) {
+                        if (adapter instanceof FragmentPagerAdapter) {
 
-                        FragmentPagerAdapter fragmentPagerAdapter = (FragmentPagerAdapter) adapter;
+                            FragmentPagerAdapter fragmentPagerAdapter = (FragmentPagerAdapter) adapter;
 
-                        Fragment fragment = fragmentPagerAdapter.getItem(current);
+                            Fragment fragment = fragmentPagerAdapter.getItem(current);
 
-                        if (fragment != null) {
-                            mScrollView = fragment.getView();
-                            if (mScrollView != null) {
-                                try {
-                                    mScrollView = mScrollView.findViewWithTag("CanScrollView");
-                                } catch (Throwable e) {
-                                    e.printStackTrace();
+                            if (fragment != null) {
+                                mScrollView = fragment.getView();
+                                if (mScrollView != null) {
+                                    try {
+                                        mScrollView = mScrollView.findViewWithTag("CanScrollView");
+                                    } catch (Throwable e) {
+                                        e.printStackTrace();
+                                    }
+
                                 }
-
                             }
+
+
+                        } else {
+
+                            mScrollView = mViewPager.getChildAt(current);
                         }
 
 
-                    } else {
-
-                        mScrollView = mViewPager.getChildAt(current);
                     }
+                }else if(mViewPager2!=null){
+                    int current = mViewPager2.getCurrentItem();
+                    if (mViewPager2.getAdapter() != null && current < mViewPager2.getAdapter().getItemCount()) {
+
+                        RecyclerView.Adapter adapter = mViewPager2.getAdapter();
+
+                        if (adapter instanceof FragmentStateAdapter) {
+
+                            FragmentStateAdapter fragmentPagerAdapter = (FragmentStateAdapter) adapter;
+
+                            Fragment fragment = fragmentPagerAdapter.createFragment(current);
+
+                            if (fragment != null) {
+                                mScrollView = fragment.getView();
+                                if (mScrollView != null) {
+                                    try {
+                                        mScrollView = mScrollView.findViewWithTag("CanScrollView");
+                                    } catch (Throwable e) {
+                                        e.printStackTrace();
+                                    }
+
+                                }
+                            }
 
 
+                        } else {
+
+                            mScrollView = mViewPager2.getChildAt(current);
+                        }
+
+
+                    }
                 }
+
             }
 
 
@@ -1536,18 +1576,9 @@ public class CanRefreshLayout extends FrameLayout {
     }
 
     private boolean canScrollUp(View view) {
-        if (android.os.Build.VERSION.SDK_INT < 14) {
-            if (view instanceof AbsListView) {
-                final AbsListView absListView = (AbsListView) view;
-                return absListView.getChildCount() > 0
-                        && (absListView.getFirstVisiblePosition() > 0 || absListView.getChildAt(0)
-                        .getTop() < absListView.getPaddingTop());
-            } else {
-                return ViewCompat.canScrollVertically(view, -1) || view.getScrollY() > 0;
-            }
-        } else {
-            return ViewCompat.canScrollVertically(view, -1);
-        }
+
+            return view.canScrollVertically(-1);
+
     }
 
 
@@ -1562,28 +1593,54 @@ public class CanRefreshLayout extends FrameLayout {
         if (mIsCoo) {
 
             if (mIsViewPager) {
-                int current = mViewPager.getCurrentItem();
-                if (current < mViewPager.getChildCount()) {
+                if(mViewPager!=null){
+                    int current = mViewPager.getCurrentItem();
+                    if (current < mViewPager.getChildCount()) {
 
-                    PagerAdapter adapter = mViewPager.getAdapter();
+                        PagerAdapter adapter = mViewPager.getAdapter();
 
-                    if (adapter instanceof FragmentPagerAdapter) {
+                        if (adapter instanceof FragmentPagerAdapter) {
 
-                        FragmentPagerAdapter fragmentPagerAdapter = (FragmentPagerAdapter) adapter;
+                            FragmentPagerAdapter fragmentPagerAdapter = (FragmentPagerAdapter) adapter;
 
-                        Fragment fragment = fragmentPagerAdapter.getItem(current);
+                            Fragment fragment = fragmentPagerAdapter.getItem(current);
 
-                        if (fragment != null) {
-                            mScrollView = fragment.getView();
+                            if (fragment != null) {
+                                mScrollView = fragment.getView();
+                            }
+
+                        } else {
+
+                            mScrollView = mViewPager.getChildAt(current);
                         }
 
-                    } else {
 
-                        mScrollView = mViewPager.getChildAt(current);
                     }
+                }else if(mViewPager2!=null){
+                    int current = mViewPager2.getCurrentItem();
+                    if (current < mViewPager2.getChildCount()) {
+
+                        RecyclerView.Adapter adapter = mViewPager2.getAdapter();
+
+                        if (adapter instanceof FragmentStateAdapter) {
+
+                            FragmentStateAdapter fragmentPagerAdapter = (FragmentStateAdapter) adapter;
+
+                            Fragment fragment = fragmentPagerAdapter.createFragment(current);
+
+                            if (fragment != null) {
+                                mScrollView = fragment.getView();
+                            }
+
+                        } else {
+
+                            mScrollView = mViewPager2.getChildAt(current);
+                        }
 
 
+                    }
                 }
+
             }
 
             if (mScrollView == null) {
@@ -1600,18 +1657,9 @@ public class CanRefreshLayout extends FrameLayout {
     }
 
     private boolean canScrollDown(View view) {
-        if (android.os.Build.VERSION.SDK_INT < 14) {
-            if (view instanceof AbsListView) {
-                final AbsListView absListView = (AbsListView) view;
-                return absListView.getChildCount() > 0
-                        && (absListView.getLastVisiblePosition() < absListView.getChildCount() - 1
-                        || absListView.getChildAt(absListView.getChildCount() - 1).getBottom() > absListView.getPaddingBottom());
-            } else {
-                return ViewCompat.canScrollVertically(view, 1) || view.getScrollY() < 0;
-            }
-        } else {
-            return ViewCompat.canScrollVertically(view, 1);
-        }
+
+            return view.canScrollVertically(1);
+
     }
 
     /**
