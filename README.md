@@ -6,7 +6,7 @@
 
 ## 添加依赖
 ```
-compile 'com.canyinghao:canrefresh:1.1.5'
+compile 'com.github.canyinghao:CanRefresh:5.0.2'
 ```
 
 ## 使用方式 
