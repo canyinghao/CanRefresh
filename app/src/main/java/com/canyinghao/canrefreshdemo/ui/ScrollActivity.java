@@ -1,23 +1,22 @@
 package com.canyinghao.canrefreshdemo.ui;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
 import com.canyinghao.canrefreshdemo.R;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 
 /**
  * Created by canyinghao on 16/1/21.
@@ -25,15 +24,15 @@ import butterknife.ButterKnife;
 public class ScrollActivity extends AppCompatActivity {
 
 
-    @BindView(R.id.toolbar)
+
     Toolbar toolbar;
-    @BindView(R.id.tabLayout)
+
     TabLayout tabLayout;
-    @BindView(R.id.viewPager)
+
     ViewPager viewPager;
 
     Adapter adapter;
-    @BindView(R.id.cd)
+
     View cd;
 
     @Override
@@ -41,7 +40,10 @@ public class ScrollActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_pager2);
-        ButterKnife.bind(this);
+        toolbar =findViewById(R.id.toolbar);
+        tabLayout =findViewById(R.id.tabLayout);
+        viewPager =findViewById(R.id.viewPager);
+        cd =findViewById(R.id.cd);
 
         toolbar.setTitle(R.string.app_name);
 

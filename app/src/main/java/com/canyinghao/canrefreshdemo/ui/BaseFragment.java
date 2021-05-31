@@ -1,21 +1,14 @@
 package com.canyinghao.canrefreshdemo.ui;
 
 import android.app.Activity;
-import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
-import com.canyinghao.canrefreshdemo.R;
-
-import java.lang.reflect.Field;
-
-import butterknife.Unbinder;
 
 
 public abstract class BaseFragment extends Fragment {
@@ -27,7 +20,7 @@ public abstract class BaseFragment extends Fragment {
 
     public LayoutInflater mInflater;
 
-    protected Unbinder unbinder;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -106,10 +99,7 @@ public abstract class BaseFragment extends Fragment {
 
     @Override
     public void onDestroy() {
-        if (unbinder != null) {
-            unbinder.unbind();
-            unbinder = null;
-        }
+
         super.onDestroy();
         context = null;
         mInflater = null;

@@ -1,7 +1,6 @@
 package com.canyinghao.canrefreshdemo.ui;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +8,7 @@ import android.view.ViewGroup;
 import com.canyinghao.canrefresh.CanRefreshLayout;
 import com.canyinghao.canrefreshdemo.R;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.fragment.app.Fragment;
 
 
 /**
@@ -19,7 +17,7 @@ import butterknife.ButterKnife;
 public class LinearLayoutFragment extends Fragment implements CanRefreshLayout.OnRefreshListener, CanRefreshLayout.OnLoadMoreListener {
 
    
-    @BindView(R.id.refresh)
+
     CanRefreshLayout refresh;
 
 
@@ -30,7 +28,7 @@ public class LinearLayoutFragment extends Fragment implements CanRefreshLayout.O
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_linear, container, false);
-        ButterKnife.bind(this, v);
+        refresh = v.findViewById(R.id.refresh);
         initView(v);
         return v;
     }

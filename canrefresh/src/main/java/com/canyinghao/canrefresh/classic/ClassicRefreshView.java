@@ -1,7 +1,6 @@
 package com.canyinghao.canrefresh.classic;
 
 import android.content.Context;
-import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +14,7 @@ import android.widget.TextView;
 import com.canyinghao.canrefresh.CanRefresh;
 import com.canyinghao.canrefresh.R;
 
+import androidx.core.view.ViewCompat;
 
 
 public class ClassicRefreshView extends FrameLayout implements CanRefresh {

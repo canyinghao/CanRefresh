@@ -1,7 +1,6 @@
 package com.canyinghao.canrefresh.google;
 
 import android.content.Context;
-import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -94,8 +93,8 @@ public class GoogleCircleHookRefreshView extends FrameLayout implements CanRefre
             alpha =1;
         }
         Log.i("onSwipe", "alpha= " + alpha);
-        ViewCompat.setAlpha(progressView, alpha);
 
+        progressView.setAlpha(alpha);
 
 
         progressView.setProgressRotation(currentPercent);
@@ -112,7 +111,7 @@ public class GoogleCircleHookRefreshView extends FrameLayout implements CanRefre
 
     @Override
     public void onReset() {
-        ViewCompat.setAlpha(progressView, 1f);
+        progressView.setAlpha(1f);
     }
 
 }

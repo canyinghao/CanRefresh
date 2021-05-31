@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,16 +18,16 @@ import com.canyinghao.canrefresh.storehouse.StoreHouseRefreshView;
 import com.canyinghao.canrefresh.yalantis.YalantisPhoenixRefreshView;
 import com.canyinghao.canrefreshdemo.R;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 
 /**
  * Created by canyinghao on 16/1/24.
  */
 public class CustomActivity extends AppCompatActivity implements CanRefreshLayout.OnRefreshListener, CanRefreshLayout.OnLoadMoreListener{
 
-    @BindView(R.id.refresh)
+
     CanRefreshLayout refresh;
     
     int headStyle;
@@ -48,7 +46,7 @@ public class CustomActivity extends AppCompatActivity implements CanRefreshLayou
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_linear);
 
-        ButterKnife.bind(this);
+        refresh = findViewById(R.id.refresh);
 
         context =this;
         initView();
@@ -63,17 +61,18 @@ public class CustomActivity extends AppCompatActivity implements CanRefreshLayou
         refresh.setOnLoadMoreListener(this);
         refresh.setOnRefreshListener(this);
 
+        findViewById(R.id.iv).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showConfigDialog();
+            }
+        });
+
 //        showConfigDialog();
     }
 
 
-    @OnClick({R.id.iv})
-    public  void click(View v){
 
-        showConfigDialog();
-
-
-    }
 
 
     private void showConfigDialog() {

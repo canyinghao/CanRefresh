@@ -1,14 +1,6 @@
 package com.canyinghao.canrefreshdemo.ui;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 
 import com.canyinghao.canadapter.CanHolderHelper;
@@ -18,9 +10,16 @@ import com.canyinghao.canrefresh.classic.RotateRefreshView;
 import com.canyinghao.canrefresh.shapeloading.ShapeLoadingRefreshView;
 import com.canyinghao.canrefreshdemo.R;
 import com.canyinghao.canrefreshdemo.model.MainBean;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 /**
  * Created by canyinghao on 16/6/29.
@@ -28,31 +27,39 @@ import butterknife.ButterKnife;
 public class CooActivity extends AppCompatActivity implements CanRefreshLayout.OnRefreshListener, CanRefreshLayout.OnLoadMoreListener {
 
 
-    @BindView(R.id.can_refresh_footer)
+
     RotateRefreshView canRefreshFooter;
-    @BindView(R.id.header)
+
     ImageView header;
-    @BindView(R.id.toolbar)
+
     Toolbar toolbar;
-    @BindView(R.id.toolbarlayout)
+
     CollapsingToolbarLayout toolbarlayout;
-    @BindView(R.id.appbar)
+
     AppBarLayout appbar;
-    @BindView(R.id.can_scroll_view)
+
     RecyclerView recyclerView;
-    @BindView(R.id.can_content_view)
+
     CoordinatorLayout canContentView;
-    @BindView(R.id.refresh)
+
     CanRefreshLayout refresh;
     CanRVAdapter adapter;
-    @BindView(R.id.can_refresh_header)
+
     ShapeLoadingRefreshView canRefreshHeader;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coo);
-        ButterKnife.bind(this);
+        canRefreshFooter = findViewById(R.id.can_refresh_footer);
+        header = findViewById(R.id.header);
+        toolbar = findViewById(R.id.toolbar);
+        toolbarlayout = findViewById(R.id.toolbarlayout);
+        appbar = findViewById(R.id.appbar);
+        recyclerView = findViewById(R.id.can_scroll_view);
+        canContentView = findViewById(R.id.can_content_view);
+        refresh = findViewById(R.id.refresh);
+        canRefreshHeader = findViewById(R.id.can_refresh_header);
 
 
         refresh.setOnLoadMoreListener(this);

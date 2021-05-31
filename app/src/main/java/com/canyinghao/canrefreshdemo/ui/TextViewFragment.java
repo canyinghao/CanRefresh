@@ -1,7 +1,6 @@
 package com.canyinghao.canrefreshdemo.ui;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
@@ -12,17 +11,17 @@ import android.widget.TextView;
 import com.canyinghao.canrefresh.CanRefreshLayout;
 import com.canyinghao.canrefreshdemo.R;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.fragment.app.Fragment;
+
 
 /**
  * Created by canyinghao on 16/1/24.
  */
 public class TextViewFragment extends Fragment implements CanRefreshLayout.OnRefreshListener, CanRefreshLayout.OnLoadMoreListener {
-    @BindView(R.id.can_content_view)
+
     TextView tvAbout;
    
-    @BindView(R.id.refresh)
+
     CanRefreshLayout refresh;
 
 
@@ -33,7 +32,8 @@ public class TextViewFragment extends Fragment implements CanRefreshLayout.OnRef
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_text_view, container, false);
-        ButterKnife.bind(this, v);
+        tvAbout = v.findViewById(R.id.can_content_view);
+        refresh = v.findViewById(R.id.refresh);
         initView(v);
         return v;
     }

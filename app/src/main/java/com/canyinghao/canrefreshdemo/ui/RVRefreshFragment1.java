@@ -1,12 +1,6 @@
 package com.canyinghao.canrefreshdemo.ui;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,9 +18,11 @@ import com.canyinghao.canrefreshdemo.App;
 import com.canyinghao.canrefreshdemo.R;
 import com.canyinghao.canrefreshdemo.model.MainBean;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 
 /**
@@ -37,23 +33,23 @@ public class RVRefreshFragment1 extends Fragment implements CanRefreshLayout.OnR
 
     public final static String TYPE = "type";
 
-    @BindView(R.id.can_content_view)
+
     RecyclerView recyclerView;
-    @BindView(R.id.refresh)
+
     CanRefreshLayout refresh;
     CanRVAdapter adapter;
 
     int type;
 
-    @BindView(R.id.iv_head)
+
     ImageView ivHead;
-    @BindView(R.id.header)
+
     CanRecyclerViewHeaderFooter header;
-    @BindView(R.id.pb)
+
     ProgressBar pb;
-    @BindView(R.id.tv_loadmore)
+
     TextView tvLoadmore;
-    @BindView(R.id.footer)
+
     CanRecyclerViewHeaderFooter footer;
 
 
@@ -78,7 +74,14 @@ public class RVRefreshFragment1 extends Fragment implements CanRefreshLayout.OnR
 
 
         View v = inflater.inflate(R.layout.fragment_rv_load, container, false);
-        ButterKnife.bind(this, v);
+
+        recyclerView = v.findViewById(R.id.can_content_view);
+        refresh = v.findViewById(R.id.refresh);
+        ivHead = v.findViewById(R.id.iv_head);
+        header = v.findViewById(R.id.header);
+        pb = v.findViewById(R.id.pb);
+        tvLoadmore = v.findViewById(R.id.tv_loadmore);
+        footer = v.findViewById(R.id.footer);
 
 
         initView();
@@ -158,17 +161,16 @@ public class RVRefreshFragment1 extends Fragment implements CanRefreshLayout.OnR
         header.attachTo(recyclerView, true);
         footer.attachTo(recyclerView, false);
         footer.setLoadMoreListener(this);
-
-
+        ivHead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                App.getInstance().show("click head");
+            }
+        });
     }
 
 
-    @OnClick(R.id.iv_head)
-    public void click(View v) {
 
-        App.getInstance().show("click head");
-
-    }
 
 
     @Override
